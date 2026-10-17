@@ -3,6 +3,7 @@ import path from "path";
 import { getDefaultTileMedia } from "@/lib/business-tile-images";
 import type { PublicMedia } from "@/lib/types/public-media";
 import { BUSINESS_SLUGS } from "@/lib/business-slugs";
+import { getDjLocalGalleryMedia, getDjLocalHeroMedia, isDjBusinessSlug } from "@/lib/dj-gallery-local";
 
 const GALLERY_ALTS: Record<string, [string, string]> = {
   "old-north-end-tattoos": [
@@ -21,10 +22,6 @@ const GALLERY_ALTS: Record<string, [string, string]> = {
     "Classic barber tools and shave setup at Trims Barbershop",
     "Premium clippers and grooming tools at Trims Barbershop",
   ],
-  "ross-squad-djs-event-rentals": [
-    "Professional PA and stage lighting from Ross Squad",
-    "DJ headphones and controller for Ross Squad events",
-  ],
 };
 
 function fileExists(publicUrlPath: string): boolean {
@@ -39,6 +36,7 @@ function fileExists(publicUrlPath: string): boolean {
 /** Local gallery files: `/images/gallery/{slug}-1.jpg`, `-2.jpg`, then tile fallback. */
 export function getLocalGalleryMedia(slug: string): PublicMedia[] {
   if (!BUSINESS_SLUGS.includes(slug as (typeof BUSINESS_SLUGS)[number])) return [];
+  if (isDjBusinessSlug(slug)) return getDjLocalGalleryMedia();
 
   const urls: string[] = [];
   for (const n of [1, 2]) {
@@ -66,6 +64,14 @@ export function getLocalGalleryMedia(slug: string): PublicMedia[] {
 
 export function enrichBusinessMedia<T extends { slug: string; media: PublicMedia[] }>(business: T): T {
   let media = [...business.media];
+
+  if (isDjBusinessSlug(business.slug)) {
+    const djHero = getDjLocalHeroMedia();
+    const djGallery = getDjLocalGalleryMedia();
+    media = media.filter((m) => m.usage !== "gallery" && m.usage !== "hero");
+    if (djHero) media = [djHero, ...media];
+    media = [...media, ...djGallery];
+  }
 
   const hasBranding = media.some((m) => ["tile", "hero", "logo", "gallery"].includes(m.usage));
   if (!hasBranding) {

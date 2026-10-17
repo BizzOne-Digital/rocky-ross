@@ -47,6 +47,9 @@ async function main() {
     introHtml: b.introHtml,
     seoTitle: b.seoTitle,
     seoDescription: b.seoDescription,
+    ...(b.slug === "old-north-end-tattoos"
+      ? { contactPhone: "7193217262" }
+      : {}),
   });
 
   for (const b of PREVIEW_BUSINESSES) {

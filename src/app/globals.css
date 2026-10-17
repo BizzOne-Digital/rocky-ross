@@ -5,6 +5,7 @@
   --ivory: #f4f0e8;
   --burgundy: #782c40;
   --brass: #b79b67;
+  --hub-teal: #3db8b0;
   --background: var(--ink);
   --foreground: var(--ivory);
   --accent: var(--burgundy);
@@ -49,6 +50,17 @@ body {
   width: 100%;
   min-width: 0;
   overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* iOS Safari: 16px+ inputs avoid focus zoom */
+@media (max-width: 639px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
 }
 
 body.mobile-nav-open {
@@ -70,8 +82,19 @@ video {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
+.prose-invert {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 .prose-invert p {
   font-family: var(--font-serif);
-  font-size: 1.125rem;
+  font-size: 1rem;
   line-height: 1.75;
+}
+
+@media (min-width: 640px) {
+  .prose-invert p {
+    font-size: 1.125rem;
+  }
 }

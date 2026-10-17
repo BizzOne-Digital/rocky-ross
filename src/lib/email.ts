@@ -4,11 +4,12 @@ import { getNotificationEmail, getSmtpFrom, isSmtpConfigured } from "./env";
 export async function sendNotificationEmail(
   subject: string,
   text: string,
+  options?: { to?: string },
 ): Promise<{ sent: boolean; error?: string }> {
   if (!isSmtpConfigured()) {
     return { sent: false, error: "SMTP not configured" };
   }
-  const to = getNotificationEmail();
+  const to = options?.to?.trim() || getNotificationEmail();
   if (!to) {
     return { sent: false, error: "NOTIFICATION_EMAIL not configured" };
   }

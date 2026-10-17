@@ -3,6 +3,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { getGlobalSettings, getPublishedBusinesses } from "@/lib/data/public";
 import { PREVIEW_BUSINESSES, PREVIEW_SETTINGS } from "@/lib/seed-data";
+import { sortBusinessesForNav } from "@/lib/sort-businesses-nav";
 
 /** Header/footer load MongoDB — allow blocking render under PPR (Next.js 16). */
 export const instant = false;
@@ -11,13 +12,13 @@ const previewNav = PREVIEW_BUSINESSES.map((b) => ({ slug: b.slug, name: b.name }
 
 async function SiteHeaderData() {
   const [settings, businesses] = await Promise.all([getGlobalSettings(), getPublishedBusinesses()]);
-  const nav = businesses.map((b) => ({ slug: b.slug, name: b.name }));
+  const nav = sortBusinessesForNav(businesses).map((b) => ({ slug: b.slug, name: b.name }));
   return <SiteHeader businesses={nav} brandName={settings.brandName} />;
 }
 
 async function SiteFooterData() {
   const [settings, businesses] = await Promise.all([getGlobalSettings(), getPublishedBusinesses()]);
-  const nav = businesses.map((b) => ({ slug: b.slug, name: b.name }));
+  const nav = sortBusinessesForNav(businesses).map((b) => ({ slug: b.slug, name: b.name }));
   return (
     <SiteFooter
       brandName={settings.brandName}
@@ -27,6 +28,7 @@ async function SiteFooterData() {
       phone={settings.contactPhone}
       address={settings.address}
       businesses={nav}
+      instagramUrl={settings.social?.instagram}
     />
   );
 }

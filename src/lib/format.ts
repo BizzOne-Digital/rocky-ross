@@ -31,6 +31,12 @@ export function phoneHref(phone: string): string {
   return digits ? `tel:+${digits.startsWith("1") ? digits : `1${digits}`}` : "#";
 }
 
+export function smsHref(phone: string): string {
+  const digits = phone.replace(/\D/g, "");
+  const ten = digits.length === 11 && digits.startsWith("1") ? digits.slice(1) : digits.slice(-10);
+  return ten.length === 10 ? `sms:+1${ten}` : "#";
+}
+
 export function escapeCsvCell(value: string): string {
   const safe = value.replace(/\r?\n/g, " ");
   if (/^[=+\-@]/.test(safe)) {

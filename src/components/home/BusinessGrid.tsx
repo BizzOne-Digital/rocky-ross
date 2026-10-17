@@ -1,4 +1,11 @@
 import { TileSlideshow } from "./TileSlideshow";
+import { getTileSlideshowMedia } from "@/lib/business-tile-slides";
+import {
+  BUSINESS_TILE_COPY,
+  BUSINESS_TILE_PRIMARY_NAME,
+  HOMEPAGE_TILE_ORDER,
+} from "@/lib/business-tile-copy";
+import type { BusinessSlug } from "@/lib/business-slugs";
 
 type Business = {
   slug: string;
@@ -12,34 +19,34 @@ type Business = {
 };
 
 export function BusinessGrid({ businesses }: { businesses: Business[] }) {
-  const ordered = [...businesses].sort((a, b) => (a as { tileOrder?: number }).tileOrder! - (b as { tileOrder?: number }).tileOrder!);
+  const bySlug = new Map(businesses.map((b) => [b.slug, b]));
 
   return (
     <div
       id="businesses"
-      className="grid min-w-0 grid-cols-1 gap-4 md:grid-cols-12 md:grid-rows-[auto_auto_auto] md:gap-5"
+      className="grid min-w-0 grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4"
     >
-      {ordered.map((b, i) => {
-        const layout =
-          i === 0
-            ? "md:col-span-7 md:row-span-2"
-            : i === 1 || i === 2
-              ? "md:col-span-5"
-              : "md:col-span-6";
+      {HOMEPAGE_TILE_ORDER.map((slug, i) => {
+        const b = bySlug.get(slug);
+        if (!b) return null;
+        const slides = getTileSlideshowMedia(b.slug, b.media);
+        const copy = BUSINESS_TILE_COPY[slug as BusinessSlug];
         return (
           <TileSlideshow
             key={b.slug}
             slug={b.slug}
-            name={b.name}
+            name={copy.tileTitle}
+            displayName={BUSINESS_TILE_PRIMARY_NAME[slug as BusinessSlug]}
             description={b.shortDescription}
+            headline={copy.headline}
+            bullets={copy.bullets}
+            ctaLabel={copy.cta}
             accent={b.accentColor}
             status={b.status}
-            media={b.media}
+            slides={slides}
             intervalMs={b.slideshowIntervalMs}
             autoplay={b.slideshowAutoplay}
             staggerIndex={i}
-            featured={i === 0}
-            className={layout}
           />
         );
       })}

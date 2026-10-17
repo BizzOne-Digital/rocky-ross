@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { connectDb } from "../db";
 import { hasMongo } from "../env";
 import { sendNotificationEmail } from "../email";
+import { inquiryDestinationEmail } from "../inquiry-routing";
 import { consumeRateLimit } from "../rate-limit";
 import { Inquiry } from "../models/Inquiry";
 import { Business } from "../models/Business";
@@ -59,9 +60,11 @@ export async function submitInquiry(input: z.infer<typeof schema>) {
     status: "new",
   });
 
+  const routeTo = inquiryDestinationEmail(parsed.data.type, parsed.data.businessSlug);
   const emailResult = await sendNotificationEmail(
     `New ${parsed.data.type} inquiry — ${parsed.data.name}`,
     JSON.stringify(doc.toObject(), null, 2),
+    { to: routeTo },
   );
 
   if (!emailResult.sent) {

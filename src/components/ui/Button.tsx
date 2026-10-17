@@ -29,7 +29,7 @@ export function Button({
   disabled?: boolean;
 }) {
   const base = cn(
-    "inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-medium tracking-wide uppercase transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brass)] disabled:opacity-50",
+    "inline-flex max-w-full items-center justify-center gap-2 px-5 py-3 text-center text-sm font-medium leading-snug tracking-wide uppercase whitespace-normal transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--brass)] disabled:opacity-50 sm:px-6",
     variants[variant],
     className,
   );

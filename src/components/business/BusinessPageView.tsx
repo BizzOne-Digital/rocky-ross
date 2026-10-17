@@ -10,7 +10,23 @@ import { BRAND } from "@/lib/constants";
 import { hasDisplayableServiceImage, resolvePublicImageUrl } from "@/lib/uploads/resolve-public-image";
 import { getBusinessSupplement } from "@/lib/business-supplement";
 import { BusinessSupplementSections } from "@/components/business/BusinessSupplement";
-import { SITE_CONTAINER, SITE_SECTION_Y } from "@/lib/site-layout";
+import { OldNorthEndContactSection, OldNorthEndTattoosSections } from "@/components/business/OldNorthEndTattoosSections";
+import { ElGringosPageSections } from "@/components/business/ElGringosPageSections";
+import { TequilaBarPageSections } from "@/components/business/TequilaBarPageSections";
+import { TrimsPageSections } from "@/components/business/TrimsPageSections";
+import { RossSquadDjPageSections } from "@/components/business/RossSquadDjPageSections";
+import { DJ_ASSETS } from "@/lib/dj-page-assets";
+import { DJ_INQUIRY_SERVICE_OPTIONS } from "@/lib/dj-page-content";
+import { isDjBusinessSlug } from "@/lib/dj-gallery-local";
+import { OWNER_CONTACTS } from "@/lib/owner-contacts";
+import { BusinessContactActions } from "@/components/business/BusinessContactActions";
+import {
+  OLD_NORTH_END_EMAIL,
+  OLD_NORTH_END_PHONE_DISPLAY,
+  OLD_NORTH_END_PHONE_RAW,
+} from "@/lib/business-page-content/old-north-end-tattoos";
+import { getLocalLogoMedia } from "@/lib/business-tile-slides";
+import { SITE_CONTAINER, SITE_HEADER_OFFSET, SITE_SECTION_Y } from "@/lib/site-layout";
 
 type BusinessData = {
   id: string;
@@ -64,9 +80,29 @@ export function BusinessPageView({
 }) {
   const heroImage = business.media.find((m) => m.usage === "hero") ?? business.media[0];
   const gallery = business.media.filter((m) => m.usage === "gallery");
-  const supplement = getBusinessSupplement(business.slug);
-  const email = business.contactEmail || settings.contactEmail;
-  const phone = business.contactPhone || settings.contactPhone;
+  const isOldNorthEnd = business.slug === "old-north-end-tattoos";
+  const isDj = isDjBusinessSlug(business.slug);
+  const shopLogo = isOldNorthEnd
+    ? getLocalLogoMedia(business.slug)
+    : isDj
+      ? { url: DJ_ASSETS.eventsLogo, usage: "logo" as const }
+      : null;
+  const supplement = isOldNorthEnd || isDj ? null : getBusinessSupplement(business.slug);
+  const email = isOldNorthEnd
+    ? OLD_NORTH_END_EMAIL
+    : isDj
+      ? OWNER_CONTACTS.djEvents.email
+      : business.contactEmail || settings.contactEmail;
+  const phone = isOldNorthEnd
+    ? business.contactPhone || OLD_NORTH_END_PHONE_RAW
+    : isDj
+      ? OWNER_CONTACTS.ownerPhone
+      : business.contactPhone || settings.contactPhone;
+  const phoneDisplay = isOldNorthEnd
+    ? OLD_NORTH_END_PHONE_DISPLAY
+    : isDj
+      ? OWNER_CONTACTS.ownerPhoneDisplay
+      : undefined;
   const onProperty = business.template !== "events";
 
   const inquiryType =
@@ -82,30 +118,60 @@ export function BusinessPageView({
 
   const tattooFields = [
     { name: "idea", label: "Tattoo idea", type: "long", required: true },
-    { name: "placement", label: "Placement" },
+    { name: "placement", label: "Placement", required: true },
     { name: "size", label: "Approximate size" },
-    { name: "artist", label: "Preferred artist" },
     { name: "preferredDate", label: "Preferred date" },
+    { name: "artist", label: "Preferred artist (optional)" },
+    { name: "notes", label: "Notes", type: "long" },
+  ];
+  const tattooBookingNote =
+    "Booking note: Submitting this inquiry does not reserve an appointment. We will contact you to discuss your tattoo and confirm details. This is not a confirmed reservation or checkout.";
+
+  const foodFields = [
+    {
+      name: "inquiryType",
+      label: "Inquiry type",
+      required: true,
+      options: ["Menu / hours", "Order food", "Catering / group event", "Other"],
+    },
+    { name: "preferredDate", label: "Preferred date" },
+    { name: "guestCount", label: "Guest count (if catering/group)" },
+    { name: "message", label: "Notes", type: "long", required: true },
+  ];
+
+  const barFields = [
+    {
+      name: "inquiryType",
+      label: "Inquiry type",
+      required: true,
+      options: ["Private / group event", "Cigar lounge", "General bar question", "VIP list opt-in question"],
+    },
+    { name: "preferredDate", label: "Preferred date" },
+    { name: "eventHours", label: "Event hours" },
+    { name: "guestCount", label: "Guest count" },
+    { name: "message", label: "Notes", type: "long", required: true },
   ];
 
   const djFields = [
-    { name: "eventType", label: "Event type", required: true },
-    { name: "eventDate", label: "Event date" },
-    { name: "venue", label: "Venue / location", required: true },
-    { name: "guestCount", label: "Estimated guest count" },
     {
-      name: "service",
-      label: "DJ, equipment, or both",
-      options: ["DJ only", "Equipment rental only", "Both"],
+      name: "requestedService",
+      label: "Requested service",
+      required: true,
+      options: DJ_INQUIRY_SERVICE_OPTIONS,
     },
-    { name: "equipment", label: "Equipment requirements", type: "long" },
-    { name: "budget", label: "Budget range (optional)" },
-    { name: "message", label: "Message", type: "long" },
+    { name: "eventDate", label: "Event date" },
+    { name: "venue", label: "Location", required: true },
+    { name: "eventHours", label: "Event hours" },
+    { name: "guestCount", label: "Guest count" },
+    { name: "notes", label: "Notes", type: "long", required: true },
+    { name: "budget", label: "Budget (optional — not a quoted rate)" },
   ];
 
   return (
     <div className="min-w-0 overflow-x-clip" style={{ ["--accent" as string]: business.accentColor }}>
-      <section className="relative min-h-[58vh] overflow-hidden pt-24 sm:min-h-[65vh] sm:pt-28 md:min-h-[78vh]">
+      <section
+        className={`relative min-h-[52vh] overflow-hidden sm:min-h-[65vh] md:min-h-[78vh] ${SITE_HEADER_OFFSET}`}
+      >
         {heroImage ? (
           <Image
             src={heroImage.url}
@@ -138,15 +204,38 @@ export function BusinessPageView({
         <div className="site-grain pointer-events-none absolute inset-0 opacity-[0.05]" aria-hidden="true" />
         <div className={`relative ${SITE_CONTAINER} pb-12 md:pb-20`}>
           <Reveal>
-            <p className="font-sans text-[11px] font-medium uppercase tracking-[0.4em] text-[var(--brass)]">
+            {shopLogo && (
+              <div className={`relative mb-6 ${isDj ? "h-16 w-56 sm:h-20 sm:w-64" : "h-20 w-44 sm:h-24 sm:w-52"}`}>
+                <Image
+                  src={shopLogo.url}
+                  alt={isDj ? "Rocky Ross Events logo" : "Old North End Tattoos LLC logo"}
+                  fill
+                  className="object-contain object-left"
+                  sizes="200px"
+                  priority
+                />
+              </div>
+            )}
+            <p className="font-sans text-[10px] font-medium uppercase tracking-[0.22em] text-[var(--brass)] sm:text-[11px] sm:tracking-[0.4em]">
               {business.heroEyebrow}
             </p>
-            <h1 className="mt-4 font-serif text-[clamp(2.25rem,9vw,5.5rem)] font-medium leading-[0.95] text-[var(--ivory)] sm:mt-5">
+            <h1 className="mt-4 break-words font-serif text-[clamp(1.875rem,8.5vw,5.5rem)] font-medium leading-[0.98] text-[var(--ivory)] sm:mt-5">
               {business.heroTitle || business.name}
             </h1>
-            <p className="mt-5 max-w-2xl font-serif text-xl font-light italic text-[var(--ivory)]/75 md:text-2xl">
+            <p className="mt-5 max-w-2xl text-pretty font-sans text-xs font-medium uppercase tracking-[0.1em] text-[var(--ivory)]/85 sm:text-sm sm:tracking-[0.12em] md:text-base">
               {business.heroSubtitle}
             </p>
+            {isOldNorthEnd && (
+              <p className="mt-4 max-w-2xl font-serif text-xl font-light italic text-[var(--ivory)]/80 md:text-2xl">
+                Great tattoos. Great experiences. A place you&apos;ll want to return to.
+              </p>
+            )}
+            {isOldNorthEnd && (
+              <BusinessContactActions
+                phone={phone}
+                phoneDisplay={phoneDisplay}
+              />
+            )}
             {business.status === "coming_soon" && (
               <span className="mt-6 inline-block border border-[var(--brass)] px-3 py-1 text-xs uppercase tracking-widest text-[var(--brass)]">
                 Coming soon
@@ -156,18 +245,54 @@ export function BusinessPageView({
         </div>
       </section>
 
-      <section className={`${SITE_CONTAINER} ${SITE_SECTION_Y}`}>
-        <Reveal>
-          <div
-            className="prose prose-invert max-w-3xl border-l-2 border-[var(--accent)]/40 pl-5 sm:pl-8 md:pl-10"
-            dangerouslySetInnerHTML={{ __html: business.introHtml }}
-          />
-        </Reveal>
-      </section>
+      {!isDj && (
+        <section id="about" className={`${SITE_CONTAINER} ${SITE_SECTION_Y}`}>
+          <Reveal>
+            {isOldNorthEnd && (
+              <div className="mb-8">
+                <SectionHeading label="Welcome" title="The shop experience" />
+              </div>
+            )}
+            {!isOldNorthEnd && <SectionHeading label="About" title={business.name} />}
+            <div
+              className="prose prose-invert max-w-3xl border-l-2 border-[var(--accent)]/40 pl-5 sm:pl-8 md:pl-10"
+              dangerouslySetInnerHTML={{ __html: business.introHtml }}
+            />
+          </Reveal>
+        </section>
+      )}
+
+      {isDj && (
+        <section id="about" className={`${SITE_CONTAINER} pb-8 pt-4 md:pb-10`}>
+          <Reveal>
+            <div
+              className="mx-auto max-w-3xl border-l-2 border-[var(--brass)]/50 py-1 pl-5 sm:pl-8"
+            >
+              <div
+                className="font-sans text-sm leading-relaxed text-[var(--ivory)]/80 md:text-base"
+                dangerouslySetInnerHTML={{ __html: business.introHtml }}
+              />
+            </div>
+          </Reveal>
+        </section>
+      )}
 
       {supplement && <BusinessSupplementSections data={supplement} />}
 
-      {business.services && business.services.length > 0 && (
+      {isOldNorthEnd && (
+        <OldNorthEndTattoosSections
+          gallery={gallery.map((g) => ({ url: g.url, alt: g.alt || "Tattoo work at Old North End Tattoos" }))}
+        />
+      )}
+
+      {business.slug === "el-gringos-tacos" && (
+        <ElGringosPageSections orderUrl={process.env.NEXT_PUBLIC_EL_GRINGOS_ORDER_URL} />
+      )}
+      {business.slug === "tequila-chilladas-bar" && <TequilaBarPageSections />}
+      {business.slug === "trims-barbershop" && <TrimsPageSections />}
+      {isDj && <RossSquadDjPageSections />}
+
+      {business.services && business.services.length > 0 && !isDj && (
         <section className={`border-y border-white/[0.06] bg-[#0c0c0c] ${SITE_SECTION_Y}`}>
           <div className={SITE_CONTAINER}>
             <Reveal>
@@ -222,7 +347,7 @@ export function BusinessPageView({
                       .filter((i) => String(i.categoryId) === String(cat._id))
                       .map((item) => (
                         <li key={item.name} className="flex justify-between gap-4 border-b border-white/5 pb-3">
-                          <div>
+                          <div className="min-w-0 flex-1">
                             <p className="text-[var(--ivory)]">
                               {item.name}
                               {item.soldOut && (
@@ -275,8 +400,8 @@ export function BusinessPageView({
         </section>
       )}
 
-      {gallery.length > 0 && (
-        <section className={`${SITE_CONTAINER} ${SITE_SECTION_Y}`}>
+      {gallery.length > 0 && !isDj && !isOldNorthEnd && (
+        <section id="gallery" className={`${SITE_CONTAINER} ${SITE_SECTION_Y}`}>
           <SectionHeading label="Visuals" title="Gallery" />
           <div
             className={`mt-8 grid gap-4 ${
@@ -305,9 +430,9 @@ export function BusinessPageView({
       )}
 
       {business.testimonials && business.testimonials.length > 0 && (
-        <section className={`border-t border-white/[0.06] bg-[#0c0c0c] ${SITE_SECTION_Y}`}>
+        <section id="reviews" className={`border-t border-white/[0.06] bg-[#0c0c0c] ${SITE_SECTION_Y}`}>
           <div className={SITE_CONTAINER}>
-            <SectionHeading label="Voices" title="Testimonials" />
+            <SectionHeading label="Voices" title="Reviews" />
             <div className="mt-4 grid gap-6 md:grid-cols-2">
               {business.testimonials.map((t) => (
                 <blockquote
@@ -324,12 +449,16 @@ export function BusinessPageView({
       )}
 
       <section className={`${SITE_CONTAINER} ${SITE_SECTION_Y}`} id="inquiry">
-        <div className="grid gap-8 lg:grid-cols-2 lg:gap-16">
-          <div>
+        <div className="grid min-w-0 gap-8 lg:grid-cols-2 lg:gap-16">
+          <div className="min-w-0">
             <SectionHeading
               label="Connect"
-              title="Request / inquiry"
-              description="Submit a request — not a confirmed booking. Our team will follow up."
+              title={isDj ? "Build my event package" : "Request / inquiry"}
+              description={
+                isDj
+                  ? "Share date, location, hours, guest count and service needs. Submitting does not confirm availability or a booking."
+                  : "Submit a request — not a confirmed booking. Our team will follow up."
+              }
             />
             {business.bookingUrl && (
               <Button href={business.bookingUrl} className="mt-6" variant="outline">
@@ -342,8 +471,8 @@ export function BusinessPageView({
               </p>
             )}
             <div className="mt-4 space-y-2 text-sm">
-              <a href={`mailto:${email}`} className="block text-[var(--brass)]">{email}</a>
-              <a href={phoneHref(phone)} className="block text-[var(--brass)]">{phone}</a>
+              <a href={`mailto:${email}`} className="block break-all text-[var(--brass)]">{email}</a>
+              <a href={phoneHref(phone)} className="block break-all text-[var(--brass)]">{phone}</a>
               {onProperty && (
                 <a href={mapsDirectionsUrl(settings.address)} className="block text-[var(--ivory)]/70 underline">
                   Directions
@@ -351,22 +480,34 @@ export function BusinessPageView({
               )}
             </div>
           </div>
-          <div className="border border-white/[0.08] bg-[#0c0c0c]/90 p-6 md:p-10">
+          <div className="min-w-0 border border-white/[0.08] bg-[#0c0c0c]/90 p-4 sm:p-6 md:p-10">
           <InquiryForm
             type={inquiryType}
             businessSlug={business.slug}
             businessId={business.id}
+            submitLabel={isDj ? "Build my event package" : isOldNorthEnd ? "Request consultation" : undefined}
+            allowReferenceUploads={isOldNorthEnd}
+            phoneBeforeEmail={isOldNorthEnd}
+            bookingNote={isOldNorthEnd ? tattooBookingNote : undefined}
             fields={
               business.template === "tattoo"
                 ? tattooFields
                 : business.template === "events"
                   ? djFields
-                  : [{ name: "message", label: "Message", type: "long", required: true }]
+                  : business.template === "food"
+                    ? foodFields
+                    : business.template === "bar"
+                      ? barFields
+                      : business.template === "barber"
+                        ? [{ name: "message", label: "Message", type: "long", required: true }]
+                        : [{ name: "message", label: "Message", type: "long", required: true }]
             }
           />
           </div>
         </div>
       </section>
+
+      {isOldNorthEnd && <OldNorthEndContactSection />}
 
       <section className="border-t border-white/[0.06] py-10 md:py-16">
         <div className={SITE_CONTAINER}>
@@ -380,7 +521,7 @@ export function BusinessPageView({
                 <li key={b.slug}>
                   <Link
                     href={`/${b.slug}`}
-                    className="group inline-flex items-center gap-2 font-serif text-lg text-[var(--ivory)]/70 transition hover:text-[var(--ivory)]"
+                    className="group inline-flex max-w-full items-start gap-2 break-words font-serif text-base text-[var(--ivory)]/70 transition hover:text-[var(--ivory)] sm:text-lg"
                   >
                     {b.name}
                     <ArrowUpRight className="h-4 w-4 opacity-0 transition group-hover:opacity-100" />

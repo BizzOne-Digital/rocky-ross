@@ -3,10 +3,12 @@ import { Reveal } from "@/components/motion/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { InquiryForm } from "@/components/forms/InquiryForm";
 import { ArrowUpRight, MapPin } from "@/components/icons/UiIcons";
-import { mapsDirectionsUrl } from "@/lib/format";
+import { mapsDirectionsUrl, phoneHref } from "@/lib/format";
+import { OWNER_CONTACTS } from "@/lib/owner-contacts";
 import { SITE_CONTAINER, SITE_SECTION_Y_LOOSE } from "@/lib/site-layout";
 
 export function VisitSection({ address }: { address: string }) {
+  const campus = OWNER_CONTACTS.campus;
   return (
     <section id="visit" className={`relative ${SITE_CONTAINER} ${SITE_SECTION_Y_LOOSE}`}>
       <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
@@ -14,8 +16,31 @@ export function VisitSection({ address }: { address: string }) {
           <SectionHeading
             label="Find us"
             title="Visit Inked & Infused"
-            description="Pull up to 2125 N Weber St. — tattoos, tacos, tequila, trims, and good energy under one roof."
+            description="Campus restaurant, bar, beer garden and patios at 2125 N Weber St. Tattoo and TRIMS entrance at 2123 N Weber St."
           />
+          <div className="mt-6 space-y-2 font-sans text-sm text-[var(--ivory)]/75">
+            <p className="text-pretty">{campus.address}</p>
+            <p className="break-words">
+              <a href={phoneHref(campus.phone)} className="text-[var(--brass)]">
+                {campus.phoneDisplay}
+              </a>
+              <span className="mx-1 hidden sm:inline">·</span>
+              <a href={`mailto:${campus.email}`} className="block break-all text-[var(--brass)] sm:inline">
+                {campus.email}
+              </a>
+            </p>
+            <p className="text-[var(--ivory)]/50">
+              Instagram{" "}
+              <a
+                href={campus.instagram}
+                className="text-[var(--brass)] underline"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                @inkedandinfusedcos
+              </a>
+            </p>
+          </div>
           <a
             href={mapsDirectionsUrl(address)}
             className="mt-10 inline-flex items-center gap-2 rounded-full border border-[var(--brass)]/50 px-7 py-3.5 font-sans text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--brass)] transition hover:bg-[var(--brass)]/10 hover:border-[var(--brass)]"
@@ -36,9 +61,11 @@ export function VisitSection({ address }: { address: string }) {
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-[#080808]/40" />
-            <div className="absolute inset-0 flex flex-col justify-end p-8">
-              <p className="font-sans text-[10px] uppercase tracking-[0.35em] text-[var(--brass)]">Address</p>
-              <p className="mt-2 font-serif text-2xl text-[var(--ivory)]">{address}</p>
+            <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-8">
+              <p className="font-sans text-[10px] uppercase tracking-[0.28em] text-[var(--brass)] sm:tracking-[0.35em]">
+                Campus address
+              </p>
+              <p className="mt-2 text-pretty font-serif text-xl text-[var(--ivory)] sm:text-2xl">{address}</p>
             </div>
           </div>
         </Reveal>
@@ -64,18 +91,28 @@ export function ContactSection({
             "radial-gradient(ellipse 60% 80% at 20% 100%, rgba(158,42,58,0.15) 0%, transparent 50%)",
         }}
       />
-      <div className={`relative grid gap-10 lg:grid-cols-2 lg:gap-16 ${SITE_CONTAINER} ${SITE_SECTION_Y_LOOSE}`}>
+      <div className={`relative grid min-w-0 gap-10 lg:grid-cols-2 lg:gap-16 ${SITE_CONTAINER} ${SITE_SECTION_Y_LOOSE}`}>
         <Reveal>
           <SectionHeading
             label="Reach out"
             title="General inquiry"
-            description="Questions about the destination or which business fits your plans? We’ll route your message to the right team."
+            description="Questions about the campus or which business fits your plans? We route messages to the right team."
           />
           <p className="mt-8 font-sans text-sm text-[var(--ivory)]/45">
-            Organization contact:{" "}
-            <a href={`mailto:${email}`} className="text-[var(--brass)] hover:underline">{email}</a>
-            {" · "}
-            <a href={`tel:${phone.replace(/\D/g, "")}`} className="text-[var(--brass)] hover:underline">{phone}</a>
+            Project / web:{" "}
+            <a href={`mailto:${email}`} className="break-all text-[var(--brass)] hover:underline">{email}</a>
+            <br />
+            Campus call/text:{" "}
+            <a href={phoneHref(phone)} className="text-[var(--brass)] hover:underline">
+              {OWNER_CONTACTS.campus.phoneDisplay}
+            </a>
+            <span className="mx-1 hidden sm:inline">·</span>
+            <span className="mt-1 block sm:mt-0 sm:inline">
+              Owner:{" "}
+              <a href={phoneHref(OWNER_CONTACTS.ownerPhone)} className="text-[var(--brass)] hover:underline">
+                {OWNER_CONTACTS.ownerPhoneDisplay}
+              </a>
+            </span>
           </p>
           <Link
             href="/#businesses"
@@ -87,7 +124,7 @@ export function ContactSection({
         </Reveal>
 
         <Reveal delay={0.08}>
-          <div className="border border-white/[0.08] bg-[#0c0c0c]/80 p-6 backdrop-blur-sm md:p-10">
+          <div className="min-w-0 border border-white/[0.08] bg-[#0c0c0c]/80 p-4 backdrop-blur-sm sm:p-6 md:p-10">
             <InquiryForm
               type="general"
               fields={[{ name: "message", label: "How can we help?", type: "long", required: true }]}

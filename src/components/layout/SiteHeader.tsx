@@ -5,26 +5,11 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { ArrowUpRight, ChevronDown, MenuLines, XMark } from "@/components/icons/UiIcons";
+import { SiteLogo } from "@/components/layout/SiteLogo";
 import { SITE_CONTAINER } from "@/lib/site-layout";
 import { cn } from "@/lib/cn";
 
 export type NavBusiness = { slug: string; name: string };
-
-function Wordmark({ brandName }: { brandName: string }) {
-  return (
-    <Link
-      href="/"
-      className="group min-w-0 max-w-[calc(100%-3.5rem)] leading-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brass)]"
-    >
-      <span className="block truncate font-serif text-[1.1rem] font-semibold tracking-[0.04em] text-[var(--ivory)] sm:text-[1.35rem] sm:tracking-[0.06em] md:text-[1.65rem]">
-        INKED <span className="text-[#9e2a3a]">&</span> INFUSED
-      </span>
-      <span className="mt-1 block truncate text-[8px] font-sans font-medium uppercase tracking-[0.32em] text-[var(--ivory)]/55 sm:mt-1.5 sm:text-[9px] sm:tracking-[0.42em] md:text-[10px]">
-        {brandName}
-      </span>
-    </Link>
-  );
-}
 
 type SiteHeaderProps = {
   businesses: NavBusiness[];
@@ -38,10 +23,7 @@ export function SiteHeader(props: SiteHeaderProps) {
   return <SiteHeaderInner key={pathname} {...props} />;
 }
 
-function SiteHeaderInner({
-  businesses,
-  brandName,
-}: SiteHeaderProps) {
+function SiteHeaderInner({ businesses }: SiteHeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const reduce = useReducedMotion();
@@ -73,24 +55,24 @@ function SiteHeaderInner({
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-50 w-full border-b transition-all duration-500",
+          "fixed inset-x-0 top-0 z-50 w-full border-b pt-[env(safe-area-inset-top,0px)] transition-all duration-500",
           scrolled
             ? "border-white/10 bg-[#0a0a0a]/85 backdrop-blur-md"
             : "border-white/[0.12] bg-transparent",
         )}
       >
         <div className={cn(SITE_CONTAINER, "flex items-center justify-between gap-3 py-3.5 md:gap-6 md:py-5")}>
-          <Wordmark brandName={brandName} />
+          <SiteLogo priority className="min-w-0 max-w-[calc(100%-3.5rem)]" />
 
           <nav
             className="hidden items-center gap-10 font-sans text-[15px] font-light tracking-wide text-[var(--ivory)]/90 lg:flex"
             aria-label="Primary"
           >
-            <Link href="/" className="transition hover:text-white">The Hub</Link>
-            <Link href="/about" className="transition hover:text-white">About</Link>
+            <Link href="/" className="transition hover:text-white">Home</Link>
             <div className="relative group">
               <button
                 type="button"
+                suppressHydrationWarning
                 className="flex items-center gap-1.5 transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--brass)]"
                 aria-haspopup="true"
               >
@@ -112,7 +94,9 @@ function SiteHeaderInner({
                 </ul>
               </div>
             </div>
-            <Link href="/about#visit" className="transition hover:text-white">Visit Us</Link>
+            <Link href="/#visit" className="transition hover:text-white">Visit Us</Link>
+            <Link href="/ross-squad-djs-event-rentals" className="transition hover:text-white">DJ & Events</Link>
+            <Link href="/#contact" className="transition hover:text-white">Contact</Link>
           </nav>
 
           <Link
@@ -125,6 +109,7 @@ function SiteHeaderInner({
 
           <button
             type="button"
+            suppressHydrationWarning
             className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/25 text-[var(--ivory)] lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav-drawer"
@@ -153,7 +138,7 @@ function SiteHeaderInner({
               role="dialog"
               aria-modal="true"
               aria-label="Site navigation"
-              className="fixed inset-y-0 right-0 z-[70] flex w-[min(100%,20rem)] max-w-full flex-col border-l border-white/10 bg-[#0a0a0a] shadow-2xl lg:hidden"
+              className="fixed inset-y-0 right-0 z-[70] flex w-[min(100%,20rem)] max-w-full flex-col border-l border-white/10 bg-[#0a0a0a] pb-[env(safe-area-inset-bottom,0px)] shadow-2xl lg:hidden"
               initial={reduce ? false : { x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
@@ -165,6 +150,7 @@ function SiteHeaderInner({
                 </span>
                 <button
                   type="button"
+                  suppressHydrationWarning
                   className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-[var(--ivory)]"
                   aria-label="Close menu"
                   onClick={close}
@@ -175,10 +161,14 @@ function SiteHeaderInner({
 
               <nav className="flex-1 overflow-y-auto overscroll-contain px-4 py-2" aria-label="Mobile">
                 <Link href="/" onClick={close} className="block border-b border-white/5 py-3.5 text-[var(--ivory)]">
-                  The Hub
+                  Home
                 </Link>
-                <Link href="/about" onClick={close} className="block border-b border-white/5 py-3.5 text-[var(--ivory)]">
-                  About
+                <Link
+                  href="/ross-squad-djs-event-rentals"
+                  onClick={close}
+                  className="block border-b border-white/5 py-3.5 text-[var(--ivory)]"
+                >
+                  DJ & Events
                 </Link>
                 <p className="pt-4 text-[10px] uppercase tracking-[0.35em] text-[var(--ivory)]/45">Our Businesses</p>
                 <ul>
@@ -187,7 +177,7 @@ function SiteHeaderInner({
                       <Link
                         href={`/${b.slug}`}
                         onClick={close}
-                        className="block border-b border-white/5 py-3.5 text-sm text-[var(--ivory)]/90"
+                        className="block break-words border-b border-white/5 py-3.5 text-sm leading-snug text-[var(--ivory)]/90"
                       >
                         {b.name}
                       </Link>
@@ -196,7 +186,7 @@ function SiteHeaderInner({
                 </ul>
                 <div className="mt-6 flex flex-col gap-2.5 pb-6">
                   <Link
-                    href="/about#visit"
+                    href="/#visit"
                     onClick={close}
                     className="rounded-full border border-white/30 py-3 text-center text-xs uppercase tracking-widest"
                   >

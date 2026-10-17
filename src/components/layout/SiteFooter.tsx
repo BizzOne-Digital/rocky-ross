@@ -1,16 +1,16 @@
 import Link from "next/link";
 import { ArrowUpRight, DiamondStar } from "@/components/icons/UiIcons";
 import { mapsDirectionsUrl, phoneHref } from "@/lib/format";
+import { SiteLogo } from "@/components/layout/SiteLogo";
 import { SITE_CONTAINER, SITE_SECTION_Y } from "@/lib/site-layout";
 
 export function SiteFooter({
   brandName,
-  destinationName,
   email,
   phone,
   address,
   businesses,
-  tagline = "TATTOOS • TACOS • TEQUILA",
+  instagramUrl,
 }: {
   brandName: string;
   destinationName: string;
@@ -19,6 +19,7 @@ export function SiteFooter({
   address: string;
   businesses: { slug: string; name: string }[];
   tagline?: string;
+  instagramUrl?: string;
 }) {
   return (
     <footer className="relative mt-auto overflow-hidden border-t border-white/[0.08] bg-[#080808]">
@@ -37,7 +38,7 @@ export function SiteFooter({
         <div className={`${SITE_CONTAINER} flex flex-col items-start justify-between gap-6 py-10 md:flex-row md:items-center md:gap-8 md:py-14`}>
           <div>
             <p className="font-sans text-[11px] uppercase tracking-[0.4em] text-[var(--brass)]">Colorado Springs</p>
-            <p className="mt-2 font-serif text-3xl text-[var(--ivory)] md:text-4xl">Plan your visit.</p>
+            <p className="mt-2 font-serif text-2xl text-[var(--ivory)] sm:text-3xl md:text-4xl">Plan your visit.</p>
             <p className="mt-2 max-w-md font-serif text-base italic text-[var(--ivory)]/55">
               Ink, flavor, pours, and cuts — one destination on N Weber St.
             </p>
@@ -62,18 +63,9 @@ export function SiteFooter({
 
       <div className={`relative grid gap-10 md:grid-cols-12 md:gap-10 ${SITE_CONTAINER} ${SITE_SECTION_Y}`}>
         <div className="md:col-span-5">
-          <Link href="/" className="inline-block">
-            <span className="font-serif text-3xl font-semibold tracking-wide text-[var(--ivory)] md:text-4xl">
-              INKED <span className="text-[#9e2a3a]">&</span> INFUSED
-            </span>
-          </Link>
-          <p className="mt-2 font-sans text-[10px] uppercase tracking-[0.42em] text-[var(--ivory)]/45">
-            {brandName}
-          </p>
-          <p className="mt-1 font-serif text-sm italic text-[var(--ivory)]/50">{destinationName}</p>
-          <p className="mt-6 font-sans text-[11px] uppercase tracking-[0.28em] text-[var(--brass)]/90">
-            {tagline}
-          </p>
+          <SiteLogo
+            imageClassName="h-14 w-auto max-w-[14rem] object-contain object-left md:h-[4.25rem] md:max-w-[17rem]"
+          />
           <p className="mt-6 max-w-sm font-serif text-lg leading-relaxed text-[var(--ivory)]/55">
             {address}
           </p>
@@ -88,9 +80,9 @@ export function SiteFooter({
               <li key={b.slug}>
                 <Link
                   href={`/${b.slug}`}
-                  className="group flex items-center justify-between gap-3 font-serif text-lg text-[var(--ivory)]/80 transition hover:text-[var(--ivory)]"
-                >
-                  <span>{b.name}</span>
+                className="group flex items-start justify-between gap-3 break-words font-serif text-base text-[var(--ivory)]/80 transition hover:text-[var(--ivory)] sm:text-lg"
+              >
+                <span className="min-w-0">{b.name}</span>
                   <ArrowUpRight className="h-4 w-4 shrink-0 opacity-0 transition group-hover:opacity-100 text-[var(--brass)]" />
                 </Link>
               </li>
@@ -106,7 +98,7 @@ export function SiteFooter({
             <li>
               <a
                 href={`mailto:${email}`}
-                className="text-[var(--ivory)]/75 transition hover:text-[var(--brass)]"
+                className="break-all text-[var(--ivory)]/75 transition hover:text-[var(--brass)]"
               >
                 {email}
               </a>
@@ -116,6 +108,18 @@ export function SiteFooter({
                 {phone}
               </a>
             </li>
+            {instagramUrl ? (
+              <li>
+                <a
+                  href={instagramUrl}
+                  className="text-[var(--ivory)]/75 transition hover:text-[var(--brass)]"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Instagram
+                </a>
+              </li>
+            ) : null}
             <li className="pt-2">
               <Link
                 href="/#contact"
@@ -128,8 +132,8 @@ export function SiteFooter({
           </ul>
           <nav className="mt-8 flex flex-wrap gap-x-5 gap-y-2 font-sans text-[11px] uppercase tracking-[0.2em] text-[var(--ivory)]/35">
             <Link href="/" className="hover:text-[var(--ivory)]/70">The Hub</Link>
-            <Link href="/about" className="hover:text-[var(--ivory)]/70">About</Link>
-            <Link href="/about#visit" className="hover:text-[var(--ivory)]/70">Visit</Link>
+            <Link href="/#visit" className="hover:text-[var(--ivory)]/70">Visit</Link>
+            <Link href="/ross-squad-djs-event-rentals" className="hover:text-[var(--ivory)]/70">DJ & Events</Link>
             <Link href="/admin" className="hover:text-[var(--ivory)]/50">Admin</Link>
           </nav>
         </div>
@@ -144,17 +148,22 @@ export function SiteFooter({
           INKED & INFUSED
         </p>
         <div className={`${SITE_CONTAINER} flex flex-wrap items-center justify-center gap-x-4 gap-y-2 py-4 font-sans text-[11px] tracking-wide text-[var(--ivory)]/40 md:justify-between`}>
-          <span className="flex flex-wrap items-center justify-center gap-4">
+          <span className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
             {businesses.map((b, i) => (
-              <span key={b.slug} className="inline-flex items-center gap-4">
-                {i > 0 && <DiamondStar className="h-1.5 w-1.5 text-[#9e2a3a]/80" />}
-                <Link href={`/${b.slug}`} className="transition hover:text-[var(--ivory)]/70">
+              <span key={b.slug} className="inline-flex max-w-full items-center gap-3 text-center sm:gap-4">
+                {i > 0 && <DiamondStar className="hidden h-1.5 w-1.5 shrink-0 text-[#9e2a3a]/80 sm:inline" />}
+                <Link
+                  href={`/${b.slug}`}
+                  className="break-words text-center transition hover:text-[var(--ivory)]/70 sm:text-left"
+                >
                   {b.name}
                 </Link>
               </span>
             ))}
           </span>
-          <span className="text-[10px] uppercase tracking-[0.28em]">© 2026 {brandName}</span>
+          <span className="text-center text-[10px] uppercase tracking-[0.22em] sm:tracking-[0.28em]">
+            © 2026 {brandName}
+          </span>
         </div>
       </div>
     </footer>
