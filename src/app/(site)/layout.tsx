@@ -43,7 +43,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
       >
         <SiteHeaderData />
       </Suspense>
-      <main className="flex-1 min-w-0 overflow-x-clip bg-[var(--ink)] text-[var(--ivory)]">{children}</main>
+      <main className="flex-1 min-w-0 overflow-x-clip bg-[#030304] text-[var(--ivory)]">{children}</main>
       <Suspense
         fallback={
           <SiteFooter

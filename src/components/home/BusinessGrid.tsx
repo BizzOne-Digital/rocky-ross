@@ -24,7 +24,7 @@ export function BusinessGrid({ businesses }: { businesses: Business[] }) {
   return (
     <div
       id="businesses"
-      className="grid min-w-0 grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4"
+      className="grid min-w-0 grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-4 lg:grid-cols-5 lg:gap-3 xl:gap-4"
     >
       {HOMEPAGE_TILE_ORDER.map((slug, i) => {
         const b = bySlug.get(slug);
@@ -39,6 +39,7 @@ export function BusinessGrid({ businesses }: { businesses: Business[] }) {
             displayName={BUSINESS_TILE_PRIMARY_NAME[slug as BusinessSlug]}
             description={b.shortDescription}
             headline={copy.headline}
+            subheadline={copy.subheadline}
             bullets={copy.bullets}
             ctaLabel={copy.cta}
             accent={b.accentColor}

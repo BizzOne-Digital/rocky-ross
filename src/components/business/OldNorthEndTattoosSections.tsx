@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Reveal } from "@/components/motion/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -15,13 +14,11 @@ import {
 import { mapsDirectionsUrl, phoneHref, smsHref } from "@/lib/format";
 import { SITE_CONTAINER, SITE_SECTION_Y } from "@/lib/site-layout";
 
-type GalleryImage = { url: string; alt: string };
-
 const TATTOO_VIP_SMS_BODY = encodeURIComponent(
   "VIP tattoo list - My name is [YOUR NAME] and my birthday is [MM/DD]",
 );
 
-export function OldNorthEndTattoosSections({ gallery }: { gallery: GalleryImage[] }) {
+export function OldNorthEndTattoosSections() {
   const vipSms = `${smsHref(OLD_NORTH_END_PHONE_RAW)}&body=${TATTOO_VIP_SMS_BODY}`;
 
   return (
@@ -65,35 +62,6 @@ export function OldNorthEndTattoosSections({ gallery }: { gallery: GalleryImage[
               We take pride in honest advice, thoughtful placement, and tattoos designed to age well. If something needs
               adjusting, we&apos;ll explain why.
             </p>
-          </Reveal>
-        </div>
-      </section>
-
-      <section id="gallery" className={`border-t border-white/[0.06] bg-[#0a0a0a] ${SITE_SECTION_Y}`}>
-        <div className={SITE_CONTAINER}>
-          <Reveal>
-            <SectionHeading label="Portfolio" title="Gallery" />
-            {gallery.length > 0 ? (
-              <div
-                className={`mt-8 grid gap-4 ${
-                  gallery.length <= 2 ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-2 md:grid-cols-3"
-                }`}
-              >
-                {gallery.map((img, i) => (
-                  <div
-                    key={i}
-                    className="relative aspect-[4/5] overflow-hidden border border-white/[0.08] bg-[#121212]"
-                  >
-                    <Image src={img.url} alt={img.alt} fill className="object-cover" sizes="33vw" />
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p className="mt-6 max-w-2xl text-sm text-[var(--ivory)]/55">
-                Real tattoo work and shop photography will appear here when final gallery originals are confirmed in our
-                handoff set. We are not using stock or generated tattoo images as substitutes.
-              </p>
-            )}
           </Reveal>
         </div>
       </section>

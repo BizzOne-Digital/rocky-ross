@@ -3,6 +3,8 @@ import type { BusinessSlug } from "@/lib/business-slugs";
 export type BusinessTileCopy = {
   tileTitle: string;
   headline: string;
+  /** Optional teal subline (e.g. City Sippers on bar tile). */
+  subheadline?: string;
   bullets: string;
   cta: string;
 };
@@ -30,7 +32,8 @@ export const BUSINESS_TILE_COPY: Record<BusinessSlug, BusinessTileCopy> = {
   "tequila-chilladas-bar": {
     tileTitle: "Tequila & Garden",
     headline: "BAR",
-    bullets: "City Sippers Trail Garden · Drinks · Patio · Events",
+    subheadline: "City Sippers Trail Garden",
+    bullets: "Drinks · Patio · Events",
     cta: "Explore",
   },
   "trims-barbershop": {

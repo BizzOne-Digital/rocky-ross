@@ -2,6 +2,7 @@ import { HubHeroSection } from "@/components/home/HubHeroSection";
 import { BusinessGrid } from "@/components/home/BusinessGrid";
 import { VisitSection, ContactSection } from "@/components/home/VisitContactSections";
 import { CampusVipSignup } from "@/components/home/CampusVipSignup";
+import { DiamondStar } from "@/components/icons/UiIcons";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { getGlobalSettings, getPublishedBusinesses, getApprovedBrandTestimonials } from "@/lib/data/public";
 import { hasMongo } from "@/lib/env";
@@ -44,10 +45,13 @@ export default async function HomePage() {
 
       <section
         id="businesses"
-        className={`${SITE_CONTAINER} border-b border-white/[0.06] pb-10 pt-2 md:pb-12`}
+        className={`${SITE_CONTAINER} border-b border-[var(--brass)]/15 bg-[#030304] pb-10 pt-4 md:pb-14 md:pt-6`}
         aria-label="Choose a service"
       >
         <BusinessGrid businesses={businesses} />
+        <p className="mt-10 flex justify-center text-[var(--brass)]" aria-hidden="true">
+          <DiamondStar className="h-3 w-3" />
+        </p>
       </section>
 
       {testimonials.length > 0 && (

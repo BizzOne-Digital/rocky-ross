@@ -79,7 +79,6 @@ export function BusinessPageView({
   happyHourNote?: string;
 }) {
   const heroImage = business.media.find((m) => m.usage === "hero") ?? business.media[0];
-  const gallery = business.media.filter((m) => m.usage === "gallery");
   const isOldNorthEnd = business.slug === "old-north-end-tattoos";
   const isDj = isDjBusinessSlug(business.slug);
   const shopLogo = isOldNorthEnd
@@ -280,9 +279,7 @@ export function BusinessPageView({
       {supplement && <BusinessSupplementSections data={supplement} />}
 
       {isOldNorthEnd && (
-        <OldNorthEndTattoosSections
-          gallery={gallery.map((g) => ({ url: g.url, alt: g.alt || "Tattoo work at Old North End Tattoos" }))}
-        />
+        <OldNorthEndTattoosSections />
       )}
 
       {business.slug === "el-gringos-tacos" && (
@@ -395,35 +392,6 @@ export function BusinessPageView({
                 {m.role && <p className="text-xs uppercase tracking-widest text-[var(--brass)]">{m.role}</p>}
                 {m.bio && <p className="mt-3 text-sm text-[var(--ivory)]/65">{m.bio}</p>}
               </article>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {gallery.length > 0 && !isDj && !isOldNorthEnd && (
-        <section id="gallery" className={`${SITE_CONTAINER} ${SITE_SECTION_Y}`}>
-          <SectionHeading label="Visuals" title="Gallery" />
-          <div
-            className={`mt-8 grid gap-4 ${
-              gallery.length <= 2 ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-2 md:grid-cols-4"
-            }`}
-          >
-            {gallery.map((img, i) => (
-              <div
-                key={i}
-                className={`group relative overflow-hidden border border-white/[0.06] bg-[#121212] ${
-                  gallery.length <= 2 ? "aspect-[4/3]" : "aspect-square"
-                }`}
-              >
-                <Image
-                  src={img.url}
-                  alt={img.alt || ""}
-                  fill
-                  className="object-cover transition duration-700 group-hover:scale-105"
-                  sizes="25vw"
-                />
-                <div className="absolute inset-0 bg-[#9e2a3a]/0 transition group-hover:bg-[#9e2a3a]/10" />
-              </div>
             ))}
           </div>
         </section>

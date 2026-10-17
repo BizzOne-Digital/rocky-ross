@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import type { PublicMedia } from "@/lib/types/public-media";
 import { BUSINESS_SLUGS } from "@/lib/business-slugs";
-import { getLocalGalleryMedia } from "@/lib/business-gallery-local";
+import { getMockupTileMedia } from "@/lib/mockup-tile-images";
 
 function fileExists(publicUrlPath: string): boolean {
   try {
@@ -35,34 +35,15 @@ export function getLocalLogoMedia(slug: string): PublicMedia | null {
   return null;
 }
 
-function uniqueByUrl(items: PublicMedia[]): PublicMedia[] {
-  const seen = new Set<string>();
-  return items.filter((m) => {
-    if (seen.has(m.url)) return false;
-    seen.add(m.url);
-    return true;
-  });
-}
-
-/** Logo first, then up to 3 real photos (gallery / tile / hero). No stock filler. */
+/** Homepage tiles: single owner mockup photo per business (no rotating gallery). */
 export function getTileSlideshowMedia(slug: string, media: PublicMedia[]): PublicMedia[] {
-  const fromDb = media.filter((m) => ["logo", "tile", "gallery", "hero"].includes(m.usage));
+  const mockup = getMockupTileMedia(slug);
+  if (mockup) return [mockup];
 
-  const logo =
-    fromDb.find((m) => m.usage === "logo") ??
-    getLocalLogoMedia(slug);
+  const fromDb = media.filter((m) => ["tile", "hero"].includes(m.usage));
+  const photo = fromDb.find((m) => m.usage === "tile") ?? fromDb.find((m) => m.usage === "hero");
+  if (photo) return [photo];
 
-  const photos = uniqueByUrl([
-    ...getLocalGalleryMedia(slug),
-    ...fromDb.filter((m) => m.usage !== "logo"),
-  ]);
-
-  const ordered: PublicMedia[] = [];
-  if (logo) ordered.push(logo);
-  for (const p of photos) {
-    if (logo && p.url === logo.url) continue;
-    ordered.push(p);
-  }
-
-  return ordered.slice(0, 4);
+  const logo = getLocalLogoMedia(slug);
+  return logo ? [logo] : [];
 }

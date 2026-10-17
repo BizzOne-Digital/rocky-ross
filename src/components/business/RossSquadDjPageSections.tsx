@@ -343,26 +343,6 @@ export function RossSquadDjPageSections() {
         </Reveal>
       </section>
 
-      <section className={`${SITE_CONTAINER} ${SITE_SECTION_Y}`}>
-        <Reveal>
-          <SectionHeading label="Gallery" title="Live performance" />
-          <div className="mt-8 grid grid-cols-1 gap-4 min-[480px]:grid-cols-2 md:grid-cols-3">
-            {[
-              { src: DJ_ASSETS.gallery5238, alt: "DJ Rocky Ross mixing beside illuminated logo" },
-              { src: DJ_ASSETS.gallery5182, alt: "DJ Rocky Ross at turntables" },
-              { src: DJ_ASSETS.gallery5376, alt: "DJ Rocky Ross at DJ controller" },
-            ].map((img) => (
-              <div
-                key={img.src}
-                className="relative aspect-[4/5] overflow-hidden border border-white/[0.08] bg-[#121212]"
-              >
-                <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="33vw" />
-              </div>
-            ))}
-          </div>
-        </Reveal>
-      </section>
-
       <section className={`border-t border-[var(--brass)]/25 bg-[#0e1412] ${SITE_SECTION_Y}`}>
         <div className={`${SITE_CONTAINER} text-center`}>
           <Reveal>
