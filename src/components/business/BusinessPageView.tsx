@@ -167,7 +167,7 @@ export function BusinessPageView({
   ];
 
   return (
-    <div className="min-w-0 overflow-x-clip" style={{ ["--accent" as string]: business.accentColor }}>
+    <div className="w-full min-w-0 max-w-full overflow-x-clip" style={{ ["--accent" as string]: business.accentColor }}>
       <section
         className={`relative min-h-[52vh] overflow-hidden sm:min-h-[65vh] md:min-h-[78vh] ${SITE_HEADER_OFFSET}`}
       >

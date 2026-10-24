@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { SiteChromeGate } from "@/components/layout/SiteChromeGate";
 import { getGlobalSettings, getPublishedBusinesses } from "@/lib/data/public";
 import { PREVIEW_BUSINESSES, PREVIEW_SETTINGS } from "@/lib/seed-data";
 import { sortBusinessesForNav } from "@/lib/sort-businesses-nav";
@@ -36,29 +37,33 @@ async function SiteFooterData() {
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <Suspense
-        fallback={
-          <SiteHeader businesses={previewNav} brandName={PREVIEW_SETTINGS.brandName} />
-        }
-      >
-        <SiteHeaderData />
-      </Suspense>
-      <main className="flex-1 min-w-0 overflow-x-clip bg-[#030304] text-[var(--ivory)]">{children}</main>
-      <Suspense
-        fallback={
-          <SiteFooter
-            brandName={PREVIEW_SETTINGS.brandName}
-            destinationName={PREVIEW_SETTINGS.destinationName}
-            tagline={PREVIEW_SETTINGS.tagline}
-            email={PREVIEW_SETTINGS.contactEmail}
-            phone={PREVIEW_SETTINGS.contactPhone}
-            address={PREVIEW_SETTINGS.address}
-            businesses={previewNav}
-          />
-        }
-      >
-        <SiteFooterData />
-      </Suspense>
+      <SiteChromeGate>
+        <Suspense
+          fallback={
+            <SiteHeader businesses={previewNav} brandName={PREVIEW_SETTINGS.brandName} />
+          }
+        >
+          <SiteHeaderData />
+        </Suspense>
+      </SiteChromeGate>
+      <main className="flex-1 min-w-0 w-full max-w-full overflow-x-clip bg-[#030304] text-[var(--ivory)]">{children}</main>
+      <SiteChromeGate>
+        <Suspense
+          fallback={
+            <SiteFooter
+              brandName={PREVIEW_SETTINGS.brandName}
+              destinationName={PREVIEW_SETTINGS.destinationName}
+              tagline={PREVIEW_SETTINGS.tagline}
+              email={PREVIEW_SETTINGS.contactEmail}
+              phone={PREVIEW_SETTINGS.contactPhone}
+              address={PREVIEW_SETTINGS.address}
+              businesses={previewNav}
+            />
+          }
+        >
+          <SiteFooterData />
+        </Suspense>
+      </SiteChromeGate>
     </>
   );
 }

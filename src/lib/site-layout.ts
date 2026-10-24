@@ -1,6 +1,9 @@
 /** Shared layout classes — tight on phone, roomier on desktop; prevents horizontal bleed. */
 export const SITE_CONTAINER =
-  "mx-auto w-full min-w-0 max-w-[1400px] pl-[max(1rem,env(safe-area-inset-left,0px))] pr-[max(1rem,env(safe-area-inset-right,0px))] sm:pl-5 sm:pr-5 md:px-10 lg:px-14";
+  "mx-auto w-full min-w-0 max-w-[1400px] pl-[max(1rem,env(safe-area-inset-left,0px))] pr-[max(1rem,env(safe-area-inset-right,0px))] md:pl-[max(2.5rem,env(safe-area-inset-left,0px))] md:pr-[max(2.5rem,env(safe-area-inset-right,0px))] lg:pl-[max(3.5rem,env(safe-area-inset-left,0px))] lg:pr-[max(3.5rem,env(safe-area-inset-right,0px))]";
+
+/** Wrap page roots so nothing forces horizontal scroll on phones. */
+export const SITE_PAGE_SHELL = "w-full min-w-0 max-w-full overflow-x-clip";
 
 /** Fixed header clearance + notch (use on first section below SiteHeader). */
 export const SITE_HEADER_OFFSET =

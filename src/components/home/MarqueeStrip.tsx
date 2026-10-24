@@ -14,7 +14,7 @@ export function MarqueeStrip() {
     );
   }
   return (
-    <div className="relative overflow-hidden border-y border-white/10 py-5">
+    <div className="relative w-full max-w-full overflow-hidden border-y border-white/10 py-5">
       <motion.div
         className="flex w-max gap-12 whitespace-nowrap font-serif text-2xl tracking-[0.35em] text-[var(--ivory)]/25 md:text-4xl"
         animate={{ x: ["0%", "-50%"] }}
