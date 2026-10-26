@@ -32,7 +32,7 @@ export const BUSINESS_TILE_COPY: Record<BusinessSlug, BusinessTileCopy> = {
   "tequila-chilladas-bar": {
     tileTitle: "Tequila & Garden",
     headline: "BAR",
-    subheadline: "City Sippers Trail Garden",
+    subheadline: "Beer Garden / Cigar Lounge · City Sippers Trail Garden",
     bullets: "Drinks · Patio · Events",
     cta: "Explore",
   },

@@ -19,8 +19,9 @@ export const OWNER_CONTACTS = {
     phone: "7193217262",
   },
   vipSms: {
-    phone: "7196944266",
-    phoneDisplay: "719-694-4266",
-    instruction: "Text the word VIP with your name and birthday",
+    phone: "7193217262",
+    phoneDisplay: "719-321-7262",
+    instruction:
+      "Include your interest, first name, and birthday month + day. Example: VIP Tacos Alex April 5",
   },
 } as const;

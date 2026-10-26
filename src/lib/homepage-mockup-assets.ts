@@ -14,6 +14,8 @@ export const HOMEPAGE_MOCKUP = {
   sectionBg: `${BASE}/ss-16-section-bg.jpg`,
   campusPhoto: `${BASE}/ss-18-campus.jpg`,
   footerCollage: `${BASE}/ss-19-footer-collage.png`,
+  /** Faint hero watermark (RR) */
+  heroRrLogo: "/images/dj/Rocky-Ross-Crest.jpg",
 } as const;
 
 const TILE_BY_SLUG: Record<BusinessSlug, string> = {

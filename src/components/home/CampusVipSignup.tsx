@@ -3,7 +3,7 @@ import { OWNER_CONTACTS } from "@/lib/owner-contacts";
 import { SITE_CONTAINER } from "@/lib/site-layout";
 
 export function CampusVipSignup() {
-  const body = encodeURIComponent("VIP - My name is [YOUR NAME] and my birthday is [MM/DD]");
+  const body = encodeURIComponent("VIP Tacos Alex April 5");
   const sms = `${smsHref(OWNER_CONTACTS.vipSms.phone)}&body=${body}`;
 
   return (

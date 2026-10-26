@@ -19,7 +19,15 @@ import {
   getMockupTileImage,
 } from "@/lib/homepage-mockup-assets";
 import { OWNER_CONTACTS } from "@/lib/owner-contacts";
+import {
+  HOMEPAGE_BUSINESS_HOURS,
+  HOMEPAGE_CAMPUS_FACEBOOK,
+  HOMEPAGE_HERO_INTRO,
+  HOMEPAGE_SERVICE_CARDS_INTRO,
+  HOMEPAGE_VIP_SMS_EXAMPLE,
+} from "@/lib/homepage-mockup-content";
 import { SITE_CONTAINER, SITE_PAGE_SHELL } from "@/lib/site-layout";
+import { HomepageReviewsPicker } from "@/components/home/HomepageReviewsPicker";
 
 const TILE_CATEGORY_ACCENT: Record<BusinessSlug, string> = {
   "ross-squad-djs-event-rentals": "text-[var(--hub-teal)]",
@@ -120,6 +128,37 @@ function HomepageLowerSmokeBackdrop() {
   );
 }
 
+/** Full supplied artwork — no aggressive crop (garden, merch, campus banner). */
+function MockupArtworkBand({
+  src,
+  alt,
+  className = "",
+  priority = false,
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+  priority?: boolean;
+}) {
+  return (
+    <section className={`relative z-10 w-full bg-black ${className}`}>
+      <div className={`${SITE_CONTAINER} py-6 md:py-8`}>
+        <div className="relative mx-auto w-full max-w-5xl overflow-hidden border border-[var(--brass)]/45 bg-black/80">
+          <Image
+            src={src}
+            alt={alt}
+            width={1600}
+            height={900}
+            className="h-auto w-full object-contain object-center"
+            sizes="(max-width: 1280px) 100vw, 1280px"
+            priority={priority}
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function VisitSectionSmokeBg() {
   return (
     <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
@@ -138,18 +177,18 @@ function VisitSectionSmokeBg() {
 }
 
 export function HomepageMockupView({ brandName }: { brandName: string }) {
-  const vipBody = encodeURIComponent("VIP - My name is [YOUR NAME] and my birthday is [MM/DD]");
+  const vipBody = encodeURIComponent(HOMEPAGE_VIP_SMS_EXAMPLE);
   const vipSms = `${smsHref(OWNER_CONTACTS.vipSms.phone)}&body=${vipBody}`;
 
   return (
     <div className={`${SITE_PAGE_SHELL} bg-[#030304] text-[var(--ivory)]`}>
       {/* —— Hero (SS1 layout · SS2 collage bg + teal smoke) —— */}
-      <section className="relative w-full min-h-[min(100svh,940px)] overflow-hidden bg-black">
+      <section className="relative w-full overflow-hidden bg-black">
         <Image
           src={HOMEPAGE_MOCKUP.findFunBg}
           alt=""
           fill
-          className="object-cover object-center opacity-90"
+          className="object-cover object-center opacity-85"
           priority
           sizes="100vw"
         />
@@ -157,18 +196,26 @@ export function HomepageMockupView({ brandName }: { brandName: string }) {
           src={HOMEPAGE_MOCKUP.heroBg}
           alt=""
           fill
-          className="object-cover object-[72%_50%] sm:object-[78%_45%]"
+          className="object-cover object-[62%_38%] sm:object-[68%_42%] md:object-[72%_45%]"
           priority
           sizes="100vw"
         />
         <div
-          className="absolute inset-0 bg-gradient-to-r from-[#061210]/95 via-[#081816]/55 to-black/15"
+          className="absolute inset-0 bg-gradient-to-b from-black/75 via-[#061210]/55 to-black/85"
           aria-hidden="true"
         />
         <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_70%_at_18%_42%,rgba(46,196,188,0.22),transparent_55%)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_38%,rgba(46,196,188,0.18),transparent_60%)]"
           aria-hidden="true"
         />
+        <div
+          className="pointer-events-none absolute left-1/2 top-[42%] z-0 h-[min(52vw,22rem)] w-[min(52vw,22rem)] -translate-x-1/2 -translate-y-1/2 opacity-[0.14]"
+          aria-hidden="true"
+        >
+          <div className="relative h-full w-full">
+            <Image src={HOMEPAGE_MOCKUP.heroRrLogo} alt="" fill className="object-contain" sizes="320px" />
+          </div>
+        </div>
 
         <div className="relative z-[1]">
           <header className="border-b border-white/10 bg-black">
@@ -199,7 +246,7 @@ export function HomepageMockupView({ brandName }: { brandName: string }) {
                 <Link href="/#businesses" className="transition hover:text-[var(--hub-teal)]">Our Businesses</Link>
                 <Link href="/tequila-chilladas-bar" className="transition hover:text-[var(--hub-teal)]">Trail Garden</Link>
                 <span className="text-[var(--ivory)]/45">Merch</span>
-                <Link href="/#visit" className="transition hover:text-[var(--hub-teal)]">Hours &amp; Location</Link>
+                <Link href="/#hours" className="transition hover:text-[var(--hub-teal)]">Hours &amp; Location</Link>
               </nav>
 
               <Link
@@ -212,23 +259,29 @@ export function HomepageMockupView({ brandName }: { brandName: string }) {
             </div>
           </header>
 
-          <div className={`${SITE_CONTAINER} grid min-w-0 gap-8 pb-14 pt-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-6 lg:pb-16 lg:pt-12`}>
-            <div className="min-w-0 max-w-[34rem]">
-              <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--hub-teal)] sm:text-[11px] sm:tracking-[0.32em] md:tracking-[0.38em]">
+          <div className={`${SITE_CONTAINER} min-w-0 pb-8 pt-6 text-center sm:pb-10 sm:pt-8 md:pb-12`}>
+            <div className="mx-auto min-w-0 max-w-3xl">
+              <Image
+                src={CAMPUS_LOGO_SRC}
+                alt=""
+                width={140}
+                height={64}
+                className="mx-auto h-12 w-auto max-w-[5.5rem] object-contain sm:h-14 sm:max-w-[6.5rem]"
+                priority
+              />
+              <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.28em] text-[var(--hub-teal)] sm:text-xs sm:tracking-[0.34em]">
                 A.K.A. The Double R Group
               </p>
-              <h1 className="hero-gold-serif mt-2 font-serif text-[clamp(2.25rem,6.5vw,3.75rem)] font-semibold leading-[1.02]">
+              <h1 className="hero-gold-serif mt-2 font-serif text-[clamp(1.85rem,5.5vw,3.25rem)] font-semibold leading-[1.05]">
                 {brandName}
               </h1>
-              <p
-                className="hero-inked-title mt-3 break-words font-serif text-[clamp(2rem,7.5vw,4.75rem)] font-semibold uppercase leading-[0.95]"
-              >
+              <p className="hero-inked-title mt-2 break-words font-serif text-[clamp(1.75rem,6vw,4rem)] font-semibold uppercase leading-[0.98]">
                 Inked <span className="text-[var(--hub-teal)]">&</span> Infused
               </p>
-              <p className="mt-1 font-serif text-[clamp(1.2rem,3.8vw,2.35rem)] font-medium uppercase tracking-[0.12em] text-[var(--ivory)] sm:tracking-[0.22em] md:tracking-[0.35em]">
+              <p className="mt-1 font-serif text-[clamp(1.1rem,3.2vw,2rem)] font-medium uppercase tracking-[0.14em] text-[var(--ivory)] sm:tracking-[0.22em] md:tracking-[0.3em]">
                 Fun Hub
               </p>
-              <p className="mt-5 flex flex-wrap items-center gap-x-2 gap-y-1 font-sans text-[10px] font-bold uppercase tracking-[0.22em] sm:text-[11px]">
+              <p className="mt-4 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 font-sans text-[11px] font-bold uppercase tracking-[0.18em] sm:text-xs sm:tracking-[0.2em]">
                 {HUB_CAMPUS_SERVICE_LINE.map((word, i) => (
                   <span key={word} className="inline-flex items-center gap-2">
                     {i > 0 && <span className="text-[var(--ivory)]">•</span>}
@@ -236,13 +289,13 @@ export function HomepageMockupView({ brandName }: { brandName: string }) {
                   </span>
                 ))}
               </p>
-              <p className="mt-4 font-serif text-sm font-medium uppercase tracking-[0.32em] text-[var(--ivory)] sm:text-base">
+              <p className="mt-3 font-serif text-sm font-medium uppercase tracking-[0.22em] text-[var(--ivory)] sm:text-base sm:tracking-[0.28em]">
                 All Under One Roof.
               </p>
-              <p className="mt-4 font-serif text-lg leading-relaxed text-[var(--ivory)] sm:text-xl">
-                Professional passion. Creative delivery. Good times.
+              <p className="mx-auto mt-4 max-w-2xl font-serif text-base leading-relaxed text-[var(--ivory)]/95 sm:text-lg">
+                {HOMEPAGE_HERO_INTRO}
               </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
                 <MockupGoldButton href="#businesses">
                   Explore our businesses
                   <ArrowIcon className="h-3.5 w-3.5" />
@@ -253,7 +306,6 @@ export function HomepageMockupView({ brandName }: { brandName: string }) {
                 </MockupTealButton>
               </div>
             </div>
-            <div className="hidden min-h-[320px] lg:block" aria-hidden="true" />
           </div>
 
           <nav
@@ -262,7 +314,7 @@ export function HomepageMockupView({ brandName }: { brandName: string }) {
           >
             <Link href="/#businesses">Our Businesses</Link>
             <Link href="/tequila-chilladas-bar">Trail Garden</Link>
-            <Link href="/#visit">Hours &amp; Location</Link>
+            <Link href="/#hours">Hours &amp; Location</Link>
           </nav>
         </div>
       </section>
@@ -273,7 +325,7 @@ export function HomepageMockupView({ brandName }: { brandName: string }) {
 
         <section
           id="businesses"
-          className="relative z-10 border-y border-[var(--brass)]/25 py-12 md:py-16"
+          className="relative z-10 border-y border-[var(--brass)]/40 py-8 md:py-12"
         >
           <div className="pointer-events-none absolute inset-0 z-0 bg-black/35" aria-hidden="true" />
           <div className={`relative z-[1] ${SITE_CONTAINER}`}>
@@ -286,8 +338,8 @@ export function HomepageMockupView({ brandName }: { brandName: string }) {
             <h2 className="font-serif text-[clamp(1.85rem,5vw,2.85rem)] font-medium leading-tight text-[var(--brass)]">
               Find your kind of fun.
             </h2>
-            <p className="mt-3 font-sans text-[10px] font-medium uppercase tracking-[0.38em] text-[var(--ivory)]/90 sm:text-[11px]">
-              Choose a business to explore.
+            <p className="mx-auto mt-3 max-w-2xl font-serif text-base leading-relaxed text-[var(--ivory)]/92 sm:text-lg">
+              {HOMEPAGE_SERVICE_CARDS_INTRO}
             </p>
             <div className="mx-auto mt-6 flex items-center justify-center gap-3" aria-hidden="true">
               <span className="h-px w-16 bg-[var(--brass)]/50 sm:w-28" />
@@ -296,7 +348,7 @@ export function HomepageMockupView({ brandName }: { brandName: string }) {
             </div>
           </header>
 
-          <ul className="mt-8 grid w-full min-w-0 list-none grid-cols-1 gap-5 min-[520px]:grid-cols-2 min-[520px]:gap-4 lg:mt-10 lg:grid-cols-5 lg:items-stretch lg:gap-2.5 xl:gap-3.5">
+          <ul className="mt-6 grid w-full min-w-0 list-none grid-cols-1 gap-4 min-[520px]:grid-cols-2 min-[520px]:gap-4 lg:mt-8 lg:grid-cols-5 lg:items-stretch lg:gap-2.5 xl:gap-3.5">
             {HOMEPAGE_TILE_ORDER.map((slug) => {
               const copy = BUSINESS_TILE_COPY[slug];
               const name = BUSINESS_TILE_PRIMARY_NAME[slug];
@@ -304,7 +356,7 @@ export function HomepageMockupView({ brandName }: { brandName: string }) {
               const logoSrc = getMockupLogoImage(slug);
               return (
                 <li key={slug} className="flex min-h-0">
-                  <article className="flex h-full w-full flex-col border border-[var(--brass)]/70 bg-black/55">
+                  <article className="flex h-full w-full flex-col border border-[var(--brass)]/55 bg-black/50 shadow-[inset_0_0_0_1px_rgba(46,196,188,0.08)]">
                     <div className="relative h-[10.5rem] w-full shrink-0 overflow-hidden sm:h-[11.5rem] lg:h-[9.75rem] xl:h-[10.25rem]">
                       <Image
                         src={tileSrc}
@@ -315,23 +367,23 @@ export function HomepageMockupView({ brandName }: { brandName: string }) {
                       />
                     </div>
                     <div className="flex min-h-0 flex-1 flex-col items-center px-2 pb-3 pt-3 text-center sm:px-3 sm:pb-4 sm:pt-3.5">
-                      <h3 className="font-serif text-[13px] font-medium uppercase leading-tight tracking-wide text-[var(--brass)] sm:text-sm lg:text-[13px]">
+                      <h3 className="font-serif text-base font-medium uppercase leading-tight tracking-wide text-[var(--brass)] sm:text-lg">
                         {name}
                       </h3>
-                      <div className="mt-2 flex min-h-[4.25rem] w-full flex-col items-center justify-start gap-1 sm:min-h-[4.5rem]">
+                      <div className="mt-2 flex min-h-[4.5rem] w-full flex-col items-center justify-start gap-1.5 sm:min-h-[5rem]">
                         <p
-                          className={`font-sans text-[9px] font-semibold uppercase tracking-[0.2em] sm:text-[10px] ${TILE_CATEGORY_ACCENT[slug]}`}
+                          className={`font-sans text-[11px] font-semibold uppercase tracking-[0.16em] sm:text-xs ${TILE_CATEGORY_ACCENT[slug]}`}
                         >
                           {formatCategoryLine(slug, copy)}
                         </p>
                         {copy.subheadline ? (
-                          <p className="font-sans text-[8px] font-semibold uppercase tracking-[0.16em] text-[var(--hub-teal)] sm:text-[9px]">
+                          <p className="px-1 font-sans text-[10px] font-semibold uppercase leading-snug tracking-[0.12em] text-[var(--hub-teal)] sm:text-[11px]">
                             {copy.subheadline}
                           </p>
                         ) : (
                           <span className="block h-[0.65rem] sm:h-[0.75rem]" aria-hidden="true" />
                         )}
-                        <p className="line-clamp-2 min-h-[2rem] max-w-full text-[8px] uppercase leading-snug tracking-[0.1em] text-[var(--ivory)]/55 sm:text-[9px]">
+                        <p className="line-clamp-3 max-w-full text-[11px] uppercase leading-snug tracking-[0.08em] text-[var(--ivory)]/70 sm:text-xs">
                           {copy.bullets.replace(/·/g, " • ")}
                         </p>
                       </div>
@@ -340,7 +392,7 @@ export function HomepageMockupView({ brandName }: { brandName: string }) {
                       </div>
                       <Link
                         href={`/${slug}`}
-                        className="mt-auto flex w-full max-w-none items-center justify-center gap-1.5 border border-[var(--brass)]/85 bg-black/30 py-2 font-sans text-[8px] font-semibold uppercase tracking-[0.2em] text-[var(--brass)] transition hover:bg-[var(--brass)]/10 sm:text-[9px]"
+                        className="mt-auto flex w-full max-w-none items-center justify-center gap-1.5 border border-[var(--brass)]/75 bg-black/35 py-2.5 font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--brass)] transition hover:bg-[var(--brass)]/10 sm:text-xs sm:tracking-[0.2em]"
                       >
                         View details
                         <ArrowIcon className="h-3 w-3 shrink-0" />
@@ -354,51 +406,58 @@ export function HomepageMockupView({ brandName }: { brandName: string }) {
           </div>
         </section>
 
-        {/* —— City Sippers / Garden (SS14 + copy) —— */}
-        <BgSection image={HOMEPAGE_MOCKUP.gardenPhoto} className="relative z-10 min-h-[320px] md:min-h-[420px]" overlay="bg-black/35">
-        <div className="flex min-h-[320px] flex-col items-center justify-center px-4 py-14 text-center md:min-h-[420px]">
-          <p className="font-serif text-[clamp(1.25rem,4vw,2rem)] font-medium uppercase tracking-[0.12em] text-[var(--ivory)] drop-shadow-lg">
-            City Sippers Trail Garden
-          </p>
-          <p className="mt-4 max-w-3xl font-sans text-[10px] font-semibold uppercase leading-relaxed tracking-[0.22em] text-[var(--ivory)]/95 sm:text-[11px]">
-            Pet &amp; family friendly · Walk-up movie theater · Along Shooks Run Trail
-          </p>
-          <MockupGoldButton href="/tequila-chilladas-bar" className="mt-8">
-            Explore the garden <span aria-hidden="true">+</span>
-          </MockupGoldButton>
-        </div>
-        </BgSection>
+        <MockupArtworkBand
+          src={HOMEPAGE_MOCKUP.gardenPhoto}
+          alt="City Sippers Trail Garden artwork"
+        />
+        <section className="relative z-10 border-b border-[var(--brass)]/30 bg-black/60 py-6 text-center">
+          <div className={SITE_CONTAINER}>
+            <p className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-[var(--hub-teal)] sm:text-sm">
+              Pet &amp; family friendly · Walk-up movie theater · Along Shooks Run Trail
+            </p>
+            <MockupGoldButton href="/tequila-chilladas-bar" className="mt-5">
+              Explore the garden <span aria-hidden="true">+</span>
+            </MockupGoldButton>
+          </div>
+        </section>
 
-        {/* —— Merch (SS15 + copy) —— */}
-        <BgSection image={HOMEPAGE_MOCKUP.merchPhoto} className="relative z-10 min-h-[300px] md:min-h-[380px]" overlay="bg-black/55">
-        <div className="flex min-h-[300px] flex-col items-center justify-center px-4 py-12 text-center md:min-h-[380px]">
-          <p className="font-serif text-[clamp(1.35rem,4.5vw,2.25rem)] font-medium text-[var(--brass)]">
-            Take the fun with you.
-          </p>
-          <p className="mt-2 font-serif text-lg italic text-[var(--ivory)]/85">A few favorites. More to come.</p>
-          <p className="mt-6 font-sans text-[11px] uppercase tracking-[0.28em] text-[var(--ivory)]/80">
-            Shirts, tanks, hoodies &amp; patch hats.
-          </p>
-          <a
-            href={smsHref(OWNER_CONTACTS.ownerPhone)}
-            className="mt-8 inline-flex border border-[var(--brass)] bg-black/50 px-6 py-3 font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--ivory)]"
-          >
-            Text Rocky: {OWNER_CONTACTS.ownerPhoneDisplay}
-          </a>
-        </div>
-        </BgSection>
+        <section className="relative z-10 border-b border-[var(--brass)]/30 bg-black py-6 md:py-8">
+          <div className={`${SITE_CONTAINER} text-center`}>
+            <p className="font-serif text-[clamp(1.35rem,4.5vw,2.25rem)] font-medium text-[var(--brass)]">
+              Take the fun with you.
+            </p>
+            <p className="mt-2 font-serif text-lg italic text-[var(--ivory)]/85">Shirts, tanks, hoodies &amp; patch hats.</p>
+            <p className="mt-4 font-sans text-sm text-[var(--ivory)]/85">
+              For all merchandise, sizes &amp; availability
+            </p>
+            <p className="mt-1 font-sans text-sm text-[var(--hub-teal)]">Ask about gift certificates, too.</p>
+            <p className="mt-3 font-serif text-sm italic text-[var(--ivory)]/70">
+              Text or call for availability — no online checkout on this site.
+            </p>
+            <a
+              href={smsHref(OWNER_CONTACTS.ownerPhone)}
+              className="mt-6 inline-flex max-w-full border border-[var(--brass)] bg-black/50 px-5 py-3 font-sans text-xs font-semibold uppercase tracking-[0.18em] text-[var(--ivory)] sm:text-sm"
+            >
+              Text Rocky: {OWNER_CONTACTS.ownerPhoneDisplay}
+            </a>
+          </div>
+          <MockupArtworkBand src={HOMEPAGE_MOCKUP.merchPhoto} alt="Merchandise shirts and hats artwork" className="!py-4" />
+        </section>
 
-        {/* —— Good people (SS18 + copy) —— */}
-        <BgSection image={HOMEPAGE_MOCKUP.campusPhoto} className="relative z-10 min-h-[280px] md:min-h-[360px]" overlay="bg-gradient-to-t from-black/80 via-black/45 to-black/30">
-        <div className="flex min-h-[280px] flex-col items-center justify-end px-4 pb-12 pt-16 text-center md:min-h-[360px] md:pb-16">
-          <p className="max-w-3xl font-serif text-[clamp(1.35rem,4vw,2.1rem)] font-medium leading-snug text-[var(--brass)]">
-            Good people. Great experiences. Everyone welcome.
-          </p>
-          <p className="mt-4 max-w-2xl font-serif text-base italic leading-relaxed text-[var(--ivory)]/90 md:text-lg">
-            Locally owned and built with heart. We welcome all walks of life.
-          </p>
-        </div>
-        </BgSection>
+        <MockupArtworkBand
+          src={HOMEPAGE_MOCKUP.campusPhoto}
+          alt="Inked and Infused campus welcome artwork"
+        />
+        <section className="relative z-10 border-b border-[var(--brass)]/25 bg-black/70 py-6 text-center">
+          <div className={`${SITE_CONTAINER} max-w-3xl`}>
+            <p className="font-serif text-xl text-[var(--brass)] sm:text-2xl">
+              Good people. Great experiences. Everyone welcome.
+            </p>
+            <p className="mt-3 font-serif text-base italic text-[var(--ivory)]/90">
+              Locally owned and built with heart. We welcome all walks of life.
+            </p>
+          </div>
+        </section>
 
         {/* —— Plan visit · reviews · VIP · footer (SS2 smoke bg) —— */}
         <section id="visit" className="relative z-10 overflow-hidden border-t border-[var(--brass)]/20 bg-black">
@@ -415,11 +474,11 @@ export function HomepageMockupView({ brandName }: { brandName: string }) {
 
           <div className="mt-10 grid min-w-0 gap-6 md:grid-cols-2">
             <div className="min-w-0 border border-[var(--brass)]/60 bg-black/40 p-4 sm:p-6 md:p-8">
-              <p className="font-sans text-[11px] font-bold uppercase tracking-[0.25em] text-[var(--ivory)]">
+              <p className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-[var(--ivory)] sm:text-sm">
                 Tattoos &amp; Trims
               </p>
-              <p className="mt-4 font-sans text-sm text-[var(--ivory)]/85">{OWNER_CONTACTS.tattooEntrance.address}</p>
-              <a href={phoneHref(OWNER_CONTACTS.ownerPhone)} className="mt-3 block text-sm text-[var(--hub-teal)]">
+              <p className="mt-4 font-sans text-base text-[var(--ivory)]/90">{OWNER_CONTACTS.tattooEntrance.address}</p>
+              <a href={phoneHref(OWNER_CONTACTS.ownerPhone)} className="mt-3 block text-base text-[var(--hub-teal)]">
                 {OWNER_CONTACTS.ownerPhoneDisplay}
               </a>
               <MockupGoldButton href={mapsDirectionsUrl(OWNER_CONTACTS.tattooEntrance.address)} className="mt-6">
@@ -427,11 +486,11 @@ export function HomepageMockupView({ brandName }: { brandName: string }) {
               </MockupGoldButton>
             </div>
             <div className="min-w-0 border border-[var(--brass)]/60 bg-black/40 p-4 sm:p-6 md:p-8">
-              <p className="font-sans text-[10px] font-bold uppercase tracking-[0.18em] text-[var(--ivory)] sm:text-[11px] sm:tracking-[0.25em]">
+              <p className="font-sans text-xs font-bold uppercase tracking-[0.16em] text-[var(--ivory)] sm:text-sm sm:tracking-[0.2em]">
                 Tacos · Bar · Beer garden &amp; cigar lounge
               </p>
-              <p className="mt-4 font-sans text-sm text-[var(--ivory)]/85">{OWNER_CONTACTS.campus.address}</p>
-              <a href={phoneHref(OWNER_CONTACTS.campus.phone)} className="mt-3 block text-sm text-[var(--hub-teal)]">
+              <p className="mt-4 font-sans text-base text-[var(--ivory)]/90">{OWNER_CONTACTS.campus.address}</p>
+              <a href={phoneHref(OWNER_CONTACTS.campus.phone)} className="mt-3 block text-base text-[var(--hub-teal)]">
                 {OWNER_CONTACTS.campus.phoneDisplay}
               </a>
               <MockupGoldButton href={mapsDirectionsUrl(OWNER_CONTACTS.campus.address)} className="mt-6">
@@ -440,14 +499,44 @@ export function HomepageMockupView({ brandName }: { brandName: string }) {
             </div>
           </div>
 
-          <p className="mt-8 text-center font-sans text-sm text-[var(--ivory)]/75">
+          <p className="mt-8 text-center font-sans text-base text-[var(--ivory)]/80">
             DJ &amp; event rentals:{" "}
             <a href={phoneHref(OWNER_CONTACTS.ownerPhone)} className="text-[var(--hub-teal)]">
               {OWNER_CONTACTS.ownerPhoneDisplay}
             </a>
           </p>
-          <div className="mt-4 flex justify-center">
-            <MockupGoldButton href="/#businesses">View business hours</MockupGoldButton>
+
+          <div
+            id="hours"
+            className="mt-10 border border-[var(--brass)]/50 bg-black/45 p-5 sm:p-8"
+          >
+            <h3 className="text-center font-serif text-2xl text-[var(--brass)]">Business hours</h3>
+            <p className="mt-2 text-center font-serif text-base italic text-[var(--ivory)]/85">
+              Each business keeps its own hours.
+            </p>
+            <ul className="mt-8 space-y-8">
+              {HOMEPAGE_BUSINESS_HOURS.map((block) => (
+                <li key={block.slug} className="border-t border-[var(--brass)]/25 pt-6 first:border-t-0 first:pt-0">
+                  <p className="font-sans text-sm font-bold uppercase tracking-[0.16em] text-[var(--hub-teal)]">
+                    {block.title}
+                  </p>
+                  <ul className="mt-3 space-y-1.5 font-sans text-base text-[var(--ivory)]/88">
+                    {block.lines.map((line) => (
+                      <li key={line}>{line}</li>
+                    ))}
+                  </ul>
+                  {block.note ? (
+                    <p className="mt-2 font-sans text-sm text-[var(--ivory)]/60">{block.note}</p>
+                  ) : null}
+                  <Link
+                    href={`/${block.slug}`}
+                    className="mt-3 inline-block font-sans text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brass)] hover:text-[var(--hub-teal)]"
+                  >
+                    Full details →
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div className="mt-16 border-t border-[var(--brass)]/25 pt-14 text-center">
@@ -458,15 +547,12 @@ export function HomepageMockupView({ brandName }: { brandName: string }) {
             <p className="mx-auto mt-3 max-w-lg font-serif text-base italic text-[var(--ivory)]/80">
               Share an honest review and help our local businesses grow.
             </p>
-            <div className="mt-8 flex w-full min-w-0 flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:justify-center">
-              <MockupGoldButton className="w-full sm:w-auto" href="https://www.google.com/search?q=Inked+and+Infused+Colorado+Springs">Review on Google</MockupGoldButton>
-              <MockupGoldButton className="w-full sm:w-auto" href="https://www.facebook.com/">Recommend on Facebook</MockupGoldButton>
-            </div>
+            <HomepageReviewsPicker />
           </div>
 
           <div id="contact" className="mt-16 border-t border-[var(--brass)]/25 pt-14 text-center">
             <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--hub-teal)] sm:tracking-[0.32em] md:tracking-[0.4em]">
-              Plan the scoop
+              Stay in the loop
             </p>
             <h3 className="mt-3 font-serif text-2xl text-[var(--brass)] md:text-3xl">Join the VIP list.</h3>
             <p className="mt-2 font-serif italic text-[var(--ivory)]/75">Occasional offers, event updates, and birthday surprises.</p>
@@ -474,12 +560,18 @@ export function HomepageMockupView({ brandName }: { brandName: string }) {
               href={vipSms}
               className="mx-auto mt-8 flex w-full max-w-xl min-w-0 flex-col border border-[var(--brass)] bg-black/50 px-4 py-8 transition hover:bg-black/70 sm:px-6"
             >
-              <span className="font-sans text-[10px] uppercase tracking-[0.22em] text-[var(--ivory)]/70 sm:tracking-[0.3em]">Text VIP to</span>
+              <span className="font-sans text-xs uppercase tracking-[0.2em] text-[var(--ivory)]/70">Text VIP to</span>
               <span className="mt-2 break-all font-serif text-[clamp(1.5rem,7vw,2.25rem)] text-[var(--ivory)] md:text-4xl">{OWNER_CONTACTS.vipSms.phoneDisplay}</span>
             </a>
-            <p className="mx-auto mt-4 max-w-md text-xs text-[var(--ivory)]/45">
-              Include your name and birthday. Msg &amp; data rates may apply.
-            </p>
+            <div className="mx-auto mt-4 max-w-lg space-y-2 text-sm text-[var(--ivory)]/65">
+              <p>Include your interest, first name, and birthday month + day.</p>
+              <p className="font-serif italic text-[var(--brass)]/90">
+                Example: {HOMEPAGE_VIP_SMS_EXAMPLE}
+              </p>
+              <p className="text-xs text-[var(--ivory)]/50">
+                No birth year needed. Msg &amp; data rates may apply. Reply STOP to opt out.
+              </p>
+            </div>
           </div>
 
           <footer className="relative mt-16 overflow-hidden border-t border-[var(--brass)]/25 pt-12 pb-3 sm:pb-4">
@@ -487,14 +579,14 @@ export function HomepageMockupView({ brandName }: { brandName: string }) {
               Follow the fun
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-3">
-              <MockupGoldButton href="https://www.facebook.com/">Facebook</MockupGoldButton>
+              <MockupGoldButton href={HOMEPAGE_CAMPUS_FACEBOOK}>Facebook</MockupGoldButton>
               <MockupGoldButton href={OWNER_CONTACTS.campus.instagram}>Instagram</MockupGoldButton>
             </div>
             <p className="mt-4 text-center font-sans text-sm text-[var(--ivory)]/60">@inkedandinfusedcos</p>
             <nav className="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[11px] uppercase tracking-[0.2em] text-[var(--ivory)]/55">
               <Link href="/#businesses" className="hover:text-[var(--brass)]">Our Businesses</Link>
               <span className="text-[var(--brass)]">|</span>
-              <Link href="/#visit" className="hover:text-[var(--brass)]">Hours &amp; Locations</Link>
+              <Link href="/#hours" className="hover:text-[var(--brass)]">Hours &amp; Locations</Link>
               <span className="text-[var(--brass)]">|</span>
               <Link href="/#contact" className="hover:text-[var(--brass)]">Contact</Link>
             </nav>
@@ -504,18 +596,26 @@ export function HomepageMockupView({ brandName }: { brandName: string }) {
             >
               {OWNER_CONTACTS.campus.email}
             </a>
-            <p className="mt-8 text-center font-serif text-2xl italic text-[var(--brass)]">Thank you for supporting local!</p>
-            <div className="pointer-events-none absolute bottom-0 right-0 hidden h-40 w-[min(12rem,38vw)] max-w-[38vw] opacity-95 sm:block md:h-48 md:w-48 lg:h-56 lg:w-56">
+            <p className="mt-8 text-center font-serif text-2xl italic text-[var(--brass)] sm:pr-[min(14rem,36vw)] md:pr-56">
+              Thank you for supporting local!
+            </p>
+            <div className="pointer-events-none absolute bottom-0 right-0 hidden h-52 w-52 opacity-100 sm:block md:h-64 md:w-64 lg:h-72 lg:w-72">
               <Image
                 src={HOMEPAGE_MOCKUP.footerCollage}
                 alt=""
                 fill
                 className="object-contain object-bottom-right"
-                sizes="256px"
+                sizes="(max-width: 640px) 200px, 288px"
               />
             </div>
-            <div className="relative mx-auto mt-4 h-32 w-32 sm:hidden">
-              <Image src={HOMEPAGE_MOCKUP.footerCollage} alt="" fill className="object-contain" sizes="160px" />
+            <div className="relative mx-auto mt-6 h-44 w-full max-w-sm sm:hidden">
+              <Image
+                src={HOMEPAGE_MOCKUP.footerCollage}
+                alt="Campus collage artwork"
+                fill
+                className="object-contain object-center"
+                sizes="320px"
+              />
             </div>
           </footer>
           </div>
