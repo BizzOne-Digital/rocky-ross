@@ -1,7 +1,6 @@
-import { ReferenceSiteEmbed } from "@/components/reference/ReferenceSiteEmbed";
-import { getGlobalSettings } from "@/lib/data/public";
-import { hasMongo } from "@/lib/env";
+import { redirect } from "next/navigation";
 import type { Metadata } from "next";
+import { getGlobalSettings } from "@/lib/data/public";
 import { getSiteUrl } from "@/lib/env";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -19,18 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function HomePage() {
-  return (
-    <>
-      {!hasMongo() && (
-        <div className="bg-[var(--burgundy)] px-4 py-2 text-center text-xs uppercase tracking-widest text-[var(--ivory)]">
-          Preview mode — connect MongoDB for live content & form storage
-        </div>
-      )}
-      <ReferenceSiteEmbed
-        src="/landing-reference/index.html"
-        title="Inked & Infused — landing page"
-      />
-    </>
-  );
+/** Owner landing reference — static HTML (iframe on `/` breaks layout on Vercel). */
+export default function HomePage() {
+  redirect("/landing-reference/index.html");
 }

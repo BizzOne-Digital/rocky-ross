@@ -1,6 +1,5 @@
 import { notFound, redirect } from "next/navigation";
 import { BusinessPageView } from "@/components/business/BusinessPageView";
-import { ReferenceSiteEmbed } from "@/components/reference/ReferenceSiteEmbed";
 import { getGlobalSettings, getPublishedBusinesses, resolveBusinessSlug } from "@/lib/data/public";
 import { getSiteUrl } from "@/lib/env";
 import { BUSINESS_SLUGS } from "@/lib/constants";
@@ -37,12 +36,7 @@ export default async function BusinessSlugPage({ params }: Props) {
   const all = await getPublishedBusinesses();
 
   if (resolved.business.slug === "ross-squad-djs-event-rentals") {
-    return (
-      <ReferenceSiteEmbed
-        src="/dj-reference/index.html"
-        title="DJ Rocky Ross — DJs, Events, Lessons & Custom Mixes"
-      />
-    );
+    redirect("/dj-reference/index.html");
   }
 
   return (
