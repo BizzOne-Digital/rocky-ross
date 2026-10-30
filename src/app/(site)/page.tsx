@@ -1,4 +1,4 @@
-import { HomepageMockupView } from "@/components/home/HomepageMockupView";
+import { ReferenceSiteEmbed } from "@/components/reference/ReferenceSiteEmbed";
 import { getGlobalSettings } from "@/lib/data/public";
 import { hasMongo } from "@/lib/env";
 import type { Metadata } from "next";
@@ -20,8 +20,6 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const settings = await getGlobalSettings();
-
   return (
     <>
       {!hasMongo() && (
@@ -29,7 +27,10 @@ export default async function HomePage() {
           Preview mode — connect MongoDB for live content & form storage
         </div>
       )}
-      <HomepageMockupView brandName={settings.brandName} />
+      <ReferenceSiteEmbed
+        src="/landing-reference/index.html"
+        title="Inked & Infused — landing page"
+      />
     </>
   );
 }

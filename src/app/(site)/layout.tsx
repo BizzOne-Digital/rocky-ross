@@ -46,7 +46,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
           <SiteHeaderData />
         </Suspense>
       </SiteChromeGate>
-      <main className="flex-1 min-w-0 w-full max-w-full overflow-x-clip bg-[#030304] text-[var(--ivory)]">{children}</main>
+      <main className="flex-1 min-w-0 w-full max-w-full overflow-x-clip bg-[#030304] p-0 text-[var(--ivory)]">{children}</main>
       <SiteChromeGate>
         <Suspense
           fallback={

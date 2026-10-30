@@ -88,30 +88,6 @@ function MockupTealButton({
   );
 }
 
-function BgSection({
-  id,
-  image,
-  className = "",
-  children,
-  overlay = "bg-black/50",
-}: {
-  id?: string;
-  image: string;
-  className?: string;
-  children: ReactNode;
-  overlay?: string;
-}) {
-  return (
-    <section id={id} className={`relative overflow-hidden ${className}`}>
-      <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
-        <Image src={image} alt="" fill className="object-cover" sizes="100vw" priority={false} />
-      </div>
-      <div className={`pointer-events-none absolute inset-0 z-[1] ${overlay}`} aria-hidden="true" />
-      <div className="relative z-[2]">{children}</div>
-    </section>
-  );
-}
-
 /** SS2 teal smoke — shared behind Find your fun → footer */
 function HomepageLowerSmokeBackdrop() {
   return (
