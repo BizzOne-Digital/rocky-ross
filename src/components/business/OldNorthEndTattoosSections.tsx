@@ -23,7 +23,7 @@ export function OldNorthEndTattoosSections() {
 
   return (
     <>
-      <section className={`border-y border-white/[0.06] bg-[#0c0c0c] ${SITE_SECTION_Y}`}>
+      <section className={`border-y border-[var(--brass)]/15 bg-black/45 ${SITE_SECTION_Y}`}>
         <div className={SITE_CONTAINER}>
           <Reveal>
             <SectionHeading label="Ink" title="Styles & services" />
@@ -35,7 +35,7 @@ export function OldNorthEndTattoosSections() {
               {OLD_NORTH_END_STYLES.map((style) => (
                 <li
                   key={style}
-                  className="border border-white/[0.08] bg-[#101010] px-4 py-3 text-center font-sans text-sm text-[var(--ivory)]/85"
+                  className="border border-[var(--brass)]/30 bg-black/55 px-4 py-3 text-center font-sans text-sm text-[var(--ivory)]/85"
                 >
                   {style}
                 </li>
@@ -103,7 +103,7 @@ export function OldNorthEndTattoosSections() {
         </Reveal>
       </section>
 
-      <section className={`border-y border-white/[0.06] bg-[#0c0c0c] ${SITE_SECTION_Y}`}>
+      <section className={`border-y border-[var(--brass)]/15 bg-black/45 ${SITE_SECTION_Y}`}>
         <div className={SITE_CONTAINER}>
           <Reveal>
             <SectionHeading label="New clients" title="First tattoo & booking" />
@@ -162,7 +162,7 @@ export function OldNorthEndContactSection() {
               </p>
             </div>
           </div>
-          <div className="mt-10 space-y-6 border-t border-white/[0.06] pt-10 text-sm leading-relaxed text-[var(--ivory)]/75">
+          <div className="mt-10 space-y-6 border-t border-[var(--brass)]/15 pt-10 text-sm leading-relaxed text-[var(--ivory)]/75">
             <div>
               <h3 className="text-xs uppercase tracking-[0.35em] text-[var(--brass)]">Age policy (shop policy)</h3>
               <p className="mt-3">

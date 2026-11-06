@@ -5,7 +5,7 @@ import { SITE_CONTAINER, SITE_SECTION_Y } from "@/lib/site-layout";
 
 export function BusinessSupplementSections({ data }: { data: BusinessSupplement }) {
   return (
-    <section className={`border-y border-white/[0.06] bg-[#0c0c0c] ${SITE_SECTION_Y}`}>
+    <section className={`border-y border-[var(--brass)]/15 bg-black/45 ${SITE_SECTION_Y}`}>
       <div className={SITE_CONTAINER}>
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
           <Reveal>

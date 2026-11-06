@@ -22,7 +22,7 @@ const PILLARS = [
 
 export function HomeExperienceSection() {
   return (
-    <section className="relative overflow-hidden border-y border-white/[0.06] bg-[#0c0c0c]">
+    <section className="relative overflow-hidden border-y border-[var(--brass)]/15 bg-black/45">
       <div
         className="pointer-events-none absolute inset-0 opacity-30"
         style={{
@@ -32,7 +32,7 @@ export function HomeExperienceSection() {
         }}
         aria-hidden="true"
       />
-      <div className="absolute inset-0 bg-[#080808]/88" aria-hidden="true" />
+      <div className="absolute inset-0 bg-black/80" aria-hidden="true" />
       <div className="site-grain pointer-events-none absolute inset-0 opacity-[0.06]" aria-hidden="true" />
 
       <div className={`relative ${SITE_CONTAINER} ${SITE_SECTION_Y_LOOSE}`}>
@@ -48,7 +48,7 @@ export function HomeExperienceSection() {
           {PILLARS.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.08}>
               <article
-                className="group relative overflow-hidden border border-white/[0.08] bg-[#101010]/80 p-8 transition duration-500 hover:border-white/15 hover:bg-[#141414]"
+                className="group relative overflow-hidden border border-[var(--brass)]/30 bg-black/55 p-8 transition duration-500 hover:border-[var(--brass)]/50 hover:bg-black/75"
               >
                 <div
                   className="absolute -right-6 -top-6 h-24 w-24 rounded-full opacity-20 blur-2xl transition group-hover:opacity-35"

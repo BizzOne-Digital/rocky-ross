@@ -167,7 +167,10 @@ export function BusinessPageView({
   ];
 
   return (
-    <div className="w-full min-w-0 max-w-full overflow-x-clip" style={{ ["--accent" as string]: business.accentColor }}>
+    <div
+      className="campus-hub-theme w-full min-w-0 max-w-full overflow-x-clip bg-[#030304] text-[var(--ivory)]"
+      style={{ ["--accent" as string]: business.accentColor }}
+    >
       <section
         className={`relative min-h-[52vh] overflow-hidden sm:min-h-[65vh] md:min-h-[78vh] ${SITE_HEADER_OFFSET}`}
       >
@@ -198,8 +201,8 @@ export function BusinessPageView({
             />
           </>
         )}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#080808]/95 via-[#080808]/70 to-[#080808]/25" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink)] via-transparent to-[#080808]/50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/75 to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#030304] via-transparent to-black/50" />
         <div className="site-grain pointer-events-none absolute inset-0 opacity-[0.05]" aria-hidden="true" />
         <div className={`relative ${SITE_CONTAINER} pb-12 md:pb-20`}>
           <Reveal>
@@ -290,7 +293,7 @@ export function BusinessPageView({
       {isDj && <RossSquadDjPageSections />}
 
       {business.services && business.services.length > 0 && !isDj && (
-        <section className={`border-y border-white/[0.06] bg-[#0c0c0c] ${SITE_SECTION_Y}`}>
+        <section className={`border-y border-[var(--brass)]/15 bg-black/45 ${SITE_SECTION_Y}`}>
           <div className={SITE_CONTAINER}>
             <Reveal>
               <SectionHeading label="Offerings" title="Services" />
@@ -305,7 +308,7 @@ export function BusinessPageView({
                   >
                     <div className="flex items-start gap-4">
                       {imageSrc && (
-                        <div className="relative h-20 w-28 shrink-0 overflow-hidden border border-white/[0.08] bg-[#121212]">
+                        <div className="relative h-20 w-28 shrink-0 overflow-hidden border border-[var(--brass)]/25 bg-black/50">
                           <Image
                             src={imageSrc}
                             alt={s.name}
@@ -386,7 +389,7 @@ export function BusinessPageView({
             {business.team.map((m) => (
               <article
                 key={m.name}
-                className="border border-white/[0.08] bg-[#0c0c0c] p-8 transition hover:border-white/15"
+                className="border border-[var(--brass)]/35 bg-black/50 p-8 transition hover:border-[var(--brass)]/55"
               >
                 <p className="text-xl text-[var(--ivory)]">{m.name}</p>
                 {m.role && <p className="text-xs uppercase tracking-widest text-[var(--brass)]">{m.role}</p>}
@@ -398,14 +401,14 @@ export function BusinessPageView({
       )}
 
       {business.testimonials && business.testimonials.length > 0 && (
-        <section id="reviews" className={`border-t border-white/[0.06] bg-[#0c0c0c] ${SITE_SECTION_Y}`}>
+        <section id="reviews" className={`border-t border-[var(--brass)]/15 bg-black/45 ${SITE_SECTION_Y}`}>
           <div className={SITE_CONTAINER}>
             <SectionHeading label="Voices" title="Reviews" />
             <div className="mt-4 grid gap-6 md:grid-cols-2">
               {business.testimonials.map((t) => (
                 <blockquote
                   key={t.customerName + t.quote.slice(0, 20)}
-                  className="border border-white/[0.08] bg-[#101010] p-8"
+                  className="border border-[var(--brass)]/30 bg-black/55 p-8"
                 >
                   <p className="text-[var(--ivory)]/80">&ldquo;{t.quote}&rdquo;</p>
                   <footer className="mt-4 text-sm text-[var(--brass)]">— {t.customerName}</footer>
@@ -448,7 +451,7 @@ export function BusinessPageView({
               )}
             </div>
           </div>
-          <div className="min-w-0 border border-white/[0.08] bg-[#0c0c0c]/90 p-4 sm:p-6 md:p-10">
+          <div className="min-w-0 border border-[var(--brass)]/35 bg-black/50 p-4 backdrop-blur-sm sm:p-6 md:p-10">
           <InquiryForm
             type={inquiryType}
             businessSlug={business.slug}
@@ -477,7 +480,7 @@ export function BusinessPageView({
 
       {isOldNorthEnd && <OldNorthEndContactSection />}
 
-      <section className="border-t border-white/[0.06] py-10 md:py-16">
+      <section className="border-t border-[var(--brass)]/15 py-10 md:py-16">
         <div className={SITE_CONTAINER}>
           <p className="font-sans text-[11px] uppercase tracking-[0.38em] text-[var(--brass)]">
             More at Inked & Infused

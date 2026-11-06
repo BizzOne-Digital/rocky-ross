@@ -51,7 +51,7 @@ export function VisitSection({ address }: { address: string }) {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className="relative aspect-[4/3] overflow-hidden border border-white/10 bg-[#121212]">
+          <div className="relative aspect-[4/3] overflow-hidden border border-[var(--brass)]/30 bg-black/50">
             <div
               className="absolute inset-0 opacity-50"
               style={{
@@ -60,7 +60,7 @@ export function VisitSection({ address }: { address: string }) {
                 backgroundPosition: "70% center",
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-[#080808]/40" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
             <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-8">
               <p className="font-sans text-[10px] uppercase tracking-[0.28em] text-[var(--brass)] sm:tracking-[0.35em]">
                 Campus address
@@ -124,7 +124,7 @@ export function ContactSection({
         </Reveal>
 
         <Reveal delay={0.08}>
-          <div className="min-w-0 border border-white/[0.08] bg-[#0c0c0c]/80 p-4 backdrop-blur-sm sm:p-6 md:p-10">
+          <div className="min-w-0 border border-[var(--brass)]/35 bg-black/50 p-4 backdrop-blur-sm sm:p-6 md:p-10">
             <InquiryForm
               type="general"
               fields={[{ name: "message", label: "How can we help?", type: "long", required: true }]}

@@ -19,7 +19,7 @@ export function TattooAftercareSection() {
   }, []);
 
   return (
-    <section id="aftercare" className={`border-y border-white/[0.06] bg-[#0c0c0c] ${SITE_SECTION_Y}`}>
+    <section id="aftercare" className={`border-y border-[var(--brass)]/15 bg-black/45 ${SITE_SECTION_Y}`}>
       <div className={SITE_CONTAINER}>
         <Reveal>
           <SectionHeading
@@ -116,7 +116,7 @@ export function TattooAftercareSection() {
               height={1100}
               className="h-auto w-full object-contain object-top"
             />
-            <figcaption className="bg-[#101010] px-3 py-2 text-center text-[10px] leading-snug text-[var(--ivory)]/50">
+            <figcaption className="bg-black/60 px-3 py-2 text-center text-[10px] leading-snug text-[var(--ivory)]/50">
               {OLD_NORTH_END_AFTERCARE_TEXT.footer} — tap View aftercare or Print for full US Letter size.
             </figcaption>
           </figure>

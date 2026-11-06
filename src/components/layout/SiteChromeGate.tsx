@@ -3,13 +3,8 @@
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 
-/** Hides global header/footer on app routes that show owner reference HTML directly. */
-const REFERENCE_CHROMELESS = [
-  "/",
-  "/ross-squad-djs-event-rentals",
-  "/landing-reference/index.html",
-  "/dj-reference/index.html",
-];
+/** Mockup homepage has its own header/footer. */
+const REFERENCE_CHROMELESS = ["/"];
 
 export function SiteChromeGate({ children }: { children: ReactNode }) {
   const pathname = usePathname();

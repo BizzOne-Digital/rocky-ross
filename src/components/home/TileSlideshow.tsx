@@ -44,12 +44,12 @@ export function TileSlideshow({
     <Link
       href={href}
       className={cn(
-        "group relative flex min-h-full flex-col overflow-hidden border border-[var(--brass)]/55 bg-[#080808] shadow-[0_8px_40px_-12px_rgba(0,0,0,0.85)] transition duration-300 hover:border-[var(--brass)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--hub-teal)]",
+        "group relative flex min-h-full flex-col overflow-hidden border border-[var(--brass)]/55 bg-black/90 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.85)] transition duration-300 hover:border-[var(--brass)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--hub-teal)]",
         className,
       )}
     >
       <article className="flex h-full flex-col">
-        <div className="relative aspect-[4/5] w-full overflow-hidden bg-[#0a0a0a] lg:aspect-[3/4]">
+        <div className="relative aspect-[4/5] w-full overflow-hidden bg-black/80 lg:aspect-[3/4]">
           {photo ? (
             <Image
               src={photo.url}
@@ -66,14 +66,14 @@ export function TileSlideshow({
             <div
               className="absolute inset-0"
               style={{
-                background: `linear-gradient(160deg, ${accent}33 0%, #080808 60%)`,
+                background: `linear-gradient(160deg, ${accent}33 0%, #030304 60%)`,
               }}
             />
           )}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#080808]/80 via-transparent to-[#080808]/20" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
         </div>
 
-        <div className="flex flex-1 flex-col items-center border-t border-[var(--brass)]/35 bg-[#080808] px-3 py-4 text-center sm:px-4 sm:py-5">
+        <div className="flex flex-1 flex-col items-center border-t border-[var(--brass)]/35 bg-black/90 px-3 py-4 text-center sm:px-4 sm:py-5">
           <h2 className="font-serif text-base font-medium leading-tight tracking-wide text-[var(--ivory)] sm:text-lg">
             {primaryTitle}
           </h2>
@@ -98,7 +98,7 @@ export function TileSlideshow({
             </p>
           )}
           <span
-            className="mt-4 inline-flex w-full max-w-[14rem] items-center justify-center gap-2 border border-[var(--brass)]/70 bg-[#0a0a0a] px-3 py-2.5 font-sans text-[9px] font-semibold uppercase tracking-[0.2em] text-[var(--ivory)] transition group-hover:border-[var(--brass)] group-hover:bg-[#121212] sm:text-[10px]"
+            className="mt-4 inline-flex w-full max-w-[14rem] items-center justify-center gap-2 border border-[var(--brass)]/70 bg-black/70 px-3 py-2.5 font-sans text-[9px] font-semibold uppercase tracking-[0.2em] text-[var(--ivory)] transition group-hover:border-[var(--brass)] group-hover:bg-black/90 sm:text-[10px]"
           >
             {ctaLabel}
             <ArrowIcon className="h-3 w-3" />

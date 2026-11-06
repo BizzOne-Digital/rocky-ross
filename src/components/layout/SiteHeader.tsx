@@ -57,8 +57,8 @@ function SiteHeaderInner({ businesses }: SiteHeaderProps) {
         className={cn(
           "fixed inset-x-0 top-0 z-50 w-full border-b pt-[env(safe-area-inset-top,0px)] transition-all duration-500",
           scrolled
-            ? "border-white/10 bg-[#0a0a0a]/85 backdrop-blur-md"
-            : "border-white/[0.12] bg-transparent",
+            ? "border-[var(--brass)]/20 bg-black/90 backdrop-blur-md"
+            : "border-[var(--brass)]/25 bg-black/40",
         )}
       >
         <div className={cn(SITE_CONTAINER, "flex items-center justify-between gap-3 py-3.5 md:gap-6 md:py-5")}>
@@ -80,7 +80,7 @@ function SiteHeaderInner({ businesses }: SiteHeaderProps) {
                 <ChevronDown className="h-4 w-4 opacity-70" />
               </button>
               <div className="pointer-events-none absolute left-1/2 top-full z-50 min-w-[300px] -translate-x-1/2 pt-4 opacity-0 transition group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
-                <ul className="border border-white/10 bg-[#0c0c0c]/95 py-2 shadow-2xl backdrop-blur-md">
+                <ul className="border border-[var(--brass)]/35 bg-black/95 py-2 shadow-2xl backdrop-blur-md">
                   {businesses.map((b) => (
                     <li key={b.slug}>
                       <Link
@@ -138,7 +138,7 @@ function SiteHeaderInner({ businesses }: SiteHeaderProps) {
               role="dialog"
               aria-modal="true"
               aria-label="Site navigation"
-              className="fixed inset-y-0 right-0 z-[70] flex w-[min(100%,20rem)] max-w-full flex-col border-l border-white/10 bg-[#0a0a0a] pb-[env(safe-area-inset-bottom,0px)] shadow-2xl lg:hidden"
+              className="fixed inset-y-0 right-0 z-[70] flex w-[min(100%,20rem)] max-w-full flex-col border-l border-[var(--brass)]/30 bg-black pb-[env(safe-area-inset-bottom,0px)] shadow-2xl lg:hidden"
               initial={reduce ? false : { x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}

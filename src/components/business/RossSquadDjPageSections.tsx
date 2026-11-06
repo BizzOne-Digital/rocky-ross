@@ -40,10 +40,10 @@ function InquireRow({
   return (
     <Link
       href="#inquiry"
-      className="group flex h-full min-h-[5.75rem] w-full min-w-0 items-center gap-2 border border-white/[0.1] bg-[#101010] px-3 py-3 transition hover:border-[var(--brass)]/45 hover:bg-[#141414] sm:gap-4 sm:px-5"
+      className="group flex h-full min-h-[5.75rem] w-full min-w-0 items-center gap-2 border border-[var(--brass)]/25 bg-black/50 px-3 py-3 transition hover:border-[var(--brass)]/55 hover:bg-black/70 sm:gap-4 sm:px-5"
     >
       {thumbSrc ? (
-        <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded border border-white/10 bg-white sm:h-14 sm:w-14">
+        <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded border border-[var(--brass)]/35 bg-white sm:h-14 sm:w-14">
           <Image src={thumbSrc} alt={thumbAlt ?? title} fill className="object-contain p-0.5" sizes="56px" />
         </div>
       ) : null}
@@ -68,10 +68,10 @@ function BioDetails({
 }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className="border border-white/[0.08] bg-[#0c0c0c]">
+    <div className="border border-[var(--brass)]/30 bg-black/50">
       <button
         type="button"
-        className="flex w-full items-center justify-between gap-3 px-4 py-4 text-left font-sans text-sm font-medium text-[var(--ivory)] transition hover:bg-white/[0.03] sm:gap-4 sm:px-5"
+        className="flex w-full items-center justify-between gap-3 px-4 py-4 text-left font-sans text-sm font-medium text-[var(--ivory)] transition hover:bg-[var(--brass)]/[0.06] sm:gap-4 sm:px-5"
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
       >
@@ -79,7 +79,7 @@ function BioDetails({
         <span className="text-[var(--brass)]">{open ? "−" : "+"}</span>
       </button>
       {open && (
-        <div className="border-t border-white/[0.06] px-5 py-4 font-sans text-sm leading-relaxed text-[var(--ivory)]/75">
+        <div className="border-t border-[var(--brass)]/15 px-5 py-4 font-sans text-sm leading-relaxed text-[var(--ivory)]/75">
           {children}
         </div>
       )}
@@ -90,7 +90,7 @@ function BioDetails({
 export function RossSquadDjPageSections() {
   return (
     <>
-      <section className={`border-t border-white/[0.06] bg-[#0a0a0a] ${SITE_SECTION_Y}`}>
+      <section className={`border-t border-[var(--brass)]/15 bg-black/45 ${SITE_SECTION_Y}`}>
         <div className={SITE_CONTAINER}>
           <Reveal>
             <SectionHeading label="About" title="DJ Rocky Ross" />
@@ -178,7 +178,7 @@ export function RossSquadDjPageSections() {
         </div>
       </section>
 
-      <section className={`border-y border-white/[0.06] bg-[#0c0c0c] ${SITE_SECTION_Y}`}>
+      <section className={`border-y border-[var(--brass)]/15 bg-black/45 ${SITE_SECTION_Y}`}>
         <div className={SITE_CONTAINER}>
           <Reveal>
             <SectionHeading label="Services" title="Entertainment & creative" />
@@ -192,7 +192,7 @@ export function RossSquadDjPageSections() {
                 </li>
               ))}
             </ul>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-8 border-y border-white/[0.06] py-10 sm:gap-12 md:gap-14">
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-8 border-y border-[var(--brass)]/15 py-10 sm:gap-12 md:gap-14">
               <div className="relative h-[4.5rem] w-44 sm:h-20 sm:w-52">
                 <Image
                   src={DJ_ASSETS.doubleRProductionz}
@@ -266,7 +266,7 @@ export function RossSquadDjPageSections() {
             <strong>Introductory private lesson:</strong> $99 for one hour (owner-approved). Other packages are custom
             quoted.
           </p>
-          <div className="relative mt-8 aspect-[16/7] max-w-4xl overflow-hidden rounded border border-white/[0.08] bg-[#121212]">
+          <div className="relative mt-8 aspect-[16/7] max-w-4xl overflow-hidden rounded border border-[var(--brass)]/30 bg-black/60">
             <Image
               src={DJ_ASSETS.lessonCertificate}
               alt="Example DJ lesson gift certificate"
@@ -278,7 +278,7 @@ export function RossSquadDjPageSections() {
         </Reveal>
       </section>
 
-      <section className={`border-y border-white/[0.06] bg-[#0c0c0c] ${SITE_SECTION_Y}`}>
+      <section className={`border-y border-[var(--brass)]/15 bg-black/45 ${SITE_SECTION_Y}`}>
         <div className={SITE_CONTAINER}>
           <Reveal>
             <SectionHeading label="Audio" title="Custom mixes & mixtapes" />
@@ -286,7 +286,7 @@ export function RossSquadDjPageSections() {
               Personal and business mixes — any occasion, style or genre, mashups and remixes. Share energy, length and
               deadline for a custom quote.
             </p>
-            <div className="relative mt-8 aspect-[16/7] max-w-4xl overflow-hidden rounded border border-white/[0.08] bg-[#121212]">
+            <div className="relative mt-8 aspect-[16/7] max-w-4xl overflow-hidden rounded border border-[var(--brass)]/30 bg-black/60">
               <Image
                 src={DJ_ASSETS.customMixCertificate}
                 alt="Example custom mix gift certificate"
@@ -308,7 +308,7 @@ export function RossSquadDjPageSections() {
         </Reveal>
       </section>
 
-      <section className={`border-y border-white/[0.06] bg-[#0c0c0c] ${SITE_SECTION_Y}`}>
+      <section className={`border-y border-[var(--brass)]/15 bg-black/45 ${SITE_SECTION_Y}`}>
         <div className={SITE_CONTAINER}>
           <Reveal>
             <SectionHeading label="Program" title="DJ internship / mentorship" />

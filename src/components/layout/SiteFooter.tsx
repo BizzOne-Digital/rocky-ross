@@ -22,7 +22,7 @@ export function SiteFooter({
   instagramUrl?: string;
 }) {
   return (
-    <footer className="relative mt-auto overflow-hidden border-t border-white/[0.08] bg-[#080808]">
+    <footer className="relative mt-auto overflow-hidden border-t border-[var(--brass)]/25 bg-black/90">
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.35]"
         aria-hidden="true"
@@ -140,7 +140,7 @@ export function SiteFooter({
       </div>
 
       {/* Decorative strip */}
-      <div className="relative overflow-hidden border-t border-white/[0.06] py-8">
+      <div className="relative overflow-hidden border-t border-[var(--brass)]/20 py-8">
         <p
           className="select-none text-center font-serif text-[clamp(3rem,14vw,8rem)] font-medium leading-none tracking-tight text-[var(--ivory)]/[0.04]"
           aria-hidden="true"

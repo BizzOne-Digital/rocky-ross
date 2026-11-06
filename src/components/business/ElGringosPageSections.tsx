@@ -11,7 +11,7 @@ const KITCHEN_HOURS = [
 export function ElGringosPageSections({ orderUrl }: { orderUrl?: string }) {
   return (
     <>
-      <section className={`border-y border-white/[0.06] bg-[#0c0c0c] ${SITE_SECTION_Y}`}>
+      <section className={`border-y border-[var(--brass)]/15 bg-black/45 ${SITE_SECTION_Y}`}>
         <div className={SITE_CONTAINER}>
           <Reveal>
             <SectionHeading label="Hours" title="Kitchen service" />
