@@ -57,15 +57,15 @@ function SiteHeaderInner({ businesses }: SiteHeaderProps) {
         className={cn(
           "fixed inset-x-0 top-0 z-50 w-full border-b pt-[env(safe-area-inset-top,0px)] transition-all duration-500",
           scrolled
-            ? "border-[var(--brass)]/20 bg-black/90 backdrop-blur-md"
-            : "border-[var(--brass)]/25 bg-black/40",
+            ? "border-brass/20 bg-black/90 backdrop-blur-md"
+            : "border-brass/25 bg-black/40",
         )}
       >
         <div className={cn(SITE_CONTAINER, "flex items-center justify-between gap-3 py-3.5 md:gap-6 md:py-5")}>
           <SiteLogo priority className="min-w-0 max-w-[calc(100%-3.5rem)]" />
 
           <nav
-            className="hidden items-center gap-10 font-sans text-[15px] font-light tracking-wide text-[var(--ivory)]/90 lg:flex"
+            className="hidden items-center gap-10 font-sans text-[15px] font-light tracking-wide text-ivory/90 lg:flex"
             aria-label="Primary"
           >
             <Link href="/" className="transition hover:text-white">Home</Link>
@@ -73,19 +73,19 @@ function SiteHeaderInner({ businesses }: SiteHeaderProps) {
               <button
                 type="button"
                 suppressHydrationWarning
-                className="flex items-center gap-1.5 transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--brass)]"
+                className="flex items-center gap-1.5 transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-brass"
                 aria-haspopup="true"
               >
                 Our Businesses
                 <ChevronDown className="h-4 w-4 opacity-70" />
               </button>
               <div className="pointer-events-none absolute left-1/2 top-full z-50 min-w-[300px] -translate-x-1/2 pt-4 opacity-0 transition group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
-                <ul className="border border-[var(--brass)]/35 bg-black/95 py-2 shadow-2xl backdrop-blur-md">
+                <ul className="border border-brass/35 bg-black/95 py-2 shadow-2xl backdrop-blur-md">
                   {businesses.map((b) => (
                     <li key={b.slug}>
                       <Link
                         href={`/${b.slug}`}
-                        className="block px-5 py-2.5 text-sm text-[var(--ivory)]/85 transition hover:bg-white/5 hover:text-white"
+                        className="block px-5 py-2.5 text-sm text-ivory/85 transition hover:bg-white/5 hover:text-white"
                       >
                         {b.name}
                       </Link>
@@ -101,7 +101,7 @@ function SiteHeaderInner({ businesses }: SiteHeaderProps) {
 
           <Link
             href="/#contact"
-            className="hidden items-center gap-2 rounded-full border border-[var(--ivory)]/55 px-5 py-2.5 font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-[var(--ivory)] transition hover:border-white hover:bg-white/5 lg:inline-flex"
+            className="hidden items-center gap-2 rounded-full border border-ivory/55 px-5 py-2.5 font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-ivory transition hover:border-white hover:bg-white/5 lg:inline-flex"
           >
             Get in touch
             <ArrowUpRight className="h-3.5 w-3.5" />
@@ -110,7 +110,7 @@ function SiteHeaderInner({ businesses }: SiteHeaderProps) {
           <button
             type="button"
             suppressHydrationWarning
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/25 text-[var(--ivory)] lg:hidden"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/25 text-ivory lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav-drawer"
             onClick={() => setOpen((v) => !v)}
@@ -138,20 +138,20 @@ function SiteHeaderInner({ businesses }: SiteHeaderProps) {
               role="dialog"
               aria-modal="true"
               aria-label="Site navigation"
-              className="fixed inset-y-0 right-0 z-[70] flex w-[min(100%,20rem)] max-w-full flex-col border-l border-[var(--brass)]/30 bg-black pb-[env(safe-area-inset-bottom,0px)] shadow-2xl lg:hidden"
+              className="fixed inset-y-0 right-0 z-[70] flex w-[min(100%,20rem)] max-w-full flex-col border-l border-brass/30 bg-black pb-[env(safe-area-inset-bottom,0px)] shadow-2xl lg:hidden"
               initial={reduce ? false : { x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "tween", duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="flex items-center justify-between border-b border-white/10 px-4 py-4">
-                <span className="font-sans text-[10px] font-medium uppercase tracking-[0.35em] text-[var(--ivory)]/50">
+                <span className="font-sans text-[10px] font-medium uppercase tracking-[0.35em] text-ivory/50">
                   Menu
                 </span>
                 <button
                   type="button"
                   suppressHydrationWarning
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-[var(--ivory)]"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-ivory"
                   aria-label="Close menu"
                   onClick={close}
                 >
@@ -160,24 +160,24 @@ function SiteHeaderInner({ businesses }: SiteHeaderProps) {
               </div>
 
               <nav className="flex-1 overflow-y-auto overscroll-contain px-4 py-2" aria-label="Mobile">
-                <Link href="/" onClick={close} className="block border-b border-white/5 py-3.5 text-[var(--ivory)]">
+                <Link href="/" onClick={close} className="block border-b border-white/5 py-3.5 text-ivory">
                   Home
                 </Link>
                 <Link
                   href="/ross-squad-djs-event-rentals"
                   onClick={close}
-                  className="block border-b border-white/5 py-3.5 text-[var(--ivory)]"
+                  className="block border-b border-white/5 py-3.5 text-ivory"
                 >
                   DJ & Events
                 </Link>
-                <p className="pt-4 text-[10px] uppercase tracking-[0.35em] text-[var(--ivory)]/45">Our Businesses</p>
+                <p className="pt-4 text-[10px] uppercase tracking-[0.35em] text-ivory/45">Our Businesses</p>
                 <ul>
                   {businesses.map((b) => (
                     <li key={b.slug}>
                       <Link
                         href={`/${b.slug}`}
                         onClick={close}
-                        className="block break-words border-b border-white/5 py-3.5 text-sm leading-snug text-[var(--ivory)]/90"
+                        className="block break-words border-b border-white/5 py-3.5 text-sm leading-snug text-ivory/90"
                       >
                         {b.name}
                       </Link>
@@ -195,7 +195,7 @@ function SiteHeaderInner({ businesses }: SiteHeaderProps) {
                   <Link
                     href="/#contact"
                     onClick={close}
-                    className="rounded-full bg-[var(--ivory)] py-3 text-center text-xs uppercase tracking-widest text-[#1a1a1a]"
+                    className="rounded-full bg-ivory py-3 text-center text-xs uppercase tracking-widest text-[#1a1a1a]"
                   >
                     Get in touch
                   </Link>

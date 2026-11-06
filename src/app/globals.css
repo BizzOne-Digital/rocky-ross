@@ -14,6 +14,16 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  /**
+   * Theme colors (Tailwind v4): use text-ivory, border-brass, bg-accent/10, etc.
+   * Avoid text-[var(--ivory)] — arbitrary values with CSS variables are not emitted in production.
+   */
+  --color-ivory: var(--ivory);
+  --color-brass: var(--brass);
+  --color-hub-teal: var(--hub-teal);
+  --color-burgundy: var(--burgundy);
+  --color-accent: var(--accent);
+  --color-ink: var(--ink);
   --font-serif: var(--font-serif), "Cormorant Garamond", Georgia, serif;
   --font-sans: var(--font-sans), "Montserrat", system-ui, sans-serif;
 }

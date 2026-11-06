@@ -96,35 +96,35 @@ export function InquiryForm({
     >
       <input type="text" name="company" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
       <label className="block text-sm">
-        <span className="mb-1 block text-[var(--ivory)]/70">Name *</span>
+        <span className="mb-1 block text-ivory/70">Name *</span>
         <input
           name="name"
           required
           maxLength={120}
           suppressHydrationWarning
-          className="w-full border border-white/15 bg-transparent px-4 py-3 text-[var(--ivory)] focus:border-[var(--brass)] focus:outline-none"
+          className="w-full border border-white/15 bg-transparent px-4 py-3 text-ivory focus:border-brass focus:outline-none"
         />
       </label>
       {phoneBeforeEmail ? (
         <>
           <label className="block text-sm">
-            <span className="mb-1 block text-[var(--ivory)]/70">Phone *</span>
+            <span className="mb-1 block text-ivory/70">Phone *</span>
             <input
               name="phone"
               type="tel"
               required
               maxLength={40}
-              className="w-full border border-white/15 bg-transparent px-4 py-3 text-[var(--ivory)] focus:border-[var(--brass)] focus:outline-none"
+              className="w-full border border-white/15 bg-transparent px-4 py-3 text-ivory focus:border-brass focus:outline-none"
             />
           </label>
           <label className="block text-sm">
-            <span className="mb-1 block text-[var(--ivory)]/70">Email *</span>
+            <span className="mb-1 block text-ivory/70">Email *</span>
             <input
               name="email"
               type="email"
               required
               maxLength={200}
-              className="w-full border border-white/15 bg-transparent px-4 py-3 text-[var(--ivory)] focus:border-[var(--brass)] focus:outline-none"
+              className="w-full border border-white/15 bg-transparent px-4 py-3 text-ivory focus:border-brass focus:outline-none"
             />
           </label>
         </>
@@ -132,22 +132,22 @@ export function InquiryForm({
         <>
           <div className="grid gap-4 md:grid-cols-2">
             <label className="block text-sm md:col-span-1">
-              <span className="mb-1 block text-[var(--ivory)]/70">Email *</span>
+              <span className="mb-1 block text-ivory/70">Email *</span>
               <input
                 name="email"
                 type="email"
                 required
                 maxLength={200}
-                className="w-full border border-white/15 bg-transparent px-4 py-3 text-[var(--ivory)] focus:border-[var(--brass)] focus:outline-none"
+                className="w-full border border-white/15 bg-transparent px-4 py-3 text-ivory focus:border-brass focus:outline-none"
               />
             </label>
             <label className="block text-sm md:col-span-1">
-              <span className="mb-1 block text-[var(--ivory)]/70">Phone</span>
+              <span className="mb-1 block text-ivory/70">Phone</span>
               <input
                 name="phone"
                 type="tel"
                 maxLength={40}
-                className="w-full border border-white/15 bg-transparent px-4 py-3 text-[var(--ivory)] focus:border-[var(--brass)] focus:outline-none"
+                className="w-full border border-white/15 bg-transparent px-4 py-3 text-ivory focus:border-brass focus:outline-none"
               />
             </label>
           </div>
@@ -157,7 +157,7 @@ export function InquiryForm({
         .filter((f) => !["name", "email", "phone"].includes(f.name))
         .map((f) => (
           <label key={f.name} className="block text-sm">
-            <span className="mb-1 block text-[var(--ivory)]/70">
+            <span className="mb-1 block text-ivory/70">
               {f.label}
               {f.required ? " *" : ""}
             </span>
@@ -165,7 +165,7 @@ export function InquiryForm({
               <select
                 name={f.name}
                 required={f.required}
-                className="w-full border border-white/15 bg-[var(--ink)] px-4 py-3 text-[var(--ivory)] focus:border-[var(--brass)] focus:outline-none"
+                className="w-full border border-white/15 bg-ink px-4 py-3 text-ivory focus:border-brass focus:outline-none"
               >
                 <option value="">Select</option>
                 {f.options.map((o) => (
@@ -178,29 +178,29 @@ export function InquiryForm({
                 required={f.required}
                 rows={f.type === "long" ? 4 : 2}
                 maxLength={2000}
-                className="w-full border border-white/15 bg-transparent px-4 py-3 text-[var(--ivory)] focus:border-[var(--brass)] focus:outline-none"
+                className="w-full border border-white/15 bg-transparent px-4 py-3 text-ivory focus:border-brass focus:outline-none"
               />
             )}
           </label>
         ))}
       {allowReferenceUploads && (
         <label className="block text-sm">
-          <span className="mb-1 block text-[var(--ivory)]/70">Reference photos (optional, up to 3)</span>
+          <span className="mb-1 block text-ivory/70">Reference photos (optional, up to 3)</span>
           <input
             type="file"
             name="referencePhotos"
             accept="image/jpeg,image/png,image/webp,image/gif"
             multiple
-            className="w-full text-sm text-[var(--ivory)]/70 file:mr-4 file:border-0 file:bg-[var(--brass)]/20 file:px-3 file:py-2 file:text-[var(--ivory)]"
+            className="w-full text-sm text-ivory/70 file:mr-4 file:border-0 file:bg-brass/20 file:px-3 file:py-2 file:text-ivory"
           />
         </label>
       )}
-      <p className="text-xs text-[var(--ivory)]/50">
+      <p className="text-xs text-ivory/50">
         {bookingNote ??
           "Submitting a request does not confirm an appointment or booking. Our team will follow up."}
       </p>
       <Button type="submit" disabled={pending}>{pending ? "Sending…" : submitLabel}</Button>
-      {message && <p className="text-sm text-[var(--brass)]" role="status">{message}</p>}
+      {message && <p className="text-sm text-brass" role="status">{message}</p>}
       {error && <p className="text-sm text-red-300" role="alert">{error}</p>}
     </form>
   );

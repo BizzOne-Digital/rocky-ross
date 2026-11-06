@@ -19,7 +19,7 @@ export function TattooAftercareSection() {
   }, []);
 
   return (
-    <section id="aftercare" className={`border-y border-[var(--brass)]/15 bg-black/45 ${SITE_SECTION_Y}`}>
+    <section id="aftercare" className={`border-y border-brass/15 bg-black/45 ${SITE_SECTION_Y}`}>
       <div className={SITE_CONTAINER}>
         <Reveal>
           <SectionHeading
@@ -34,7 +34,7 @@ export function TattooAftercareSection() {
             <a
               href={OLD_NORTH_END_AFTERCARE_IMAGE}
               download="Old-North-End-Tattoos-Aftercare-Letter.jpg"
-              className="inline-flex items-center justify-center border border-[var(--ivory)]/25 px-6 py-3 text-sm font-medium uppercase tracking-wide text-[var(--ivory)] transition hover:border-[var(--brass)] hover:text-[var(--brass)]"
+              className="inline-flex items-center justify-center border border-ivory/25 px-6 py-3 text-sm font-medium uppercase tracking-wide text-ivory transition hover:border-brass hover:text-brass"
             >
               Save image
             </a>
@@ -52,7 +52,7 @@ export function TattooAftercareSection() {
             >
               <button
                 type="button"
-                className="absolute right-4 top-4 text-sm uppercase tracking-widest text-[var(--ivory)]"
+                className="absolute right-4 top-4 text-sm uppercase tracking-widest text-ivory"
                 onClick={() => setViewerOpen(false)}
               >
                 Close
@@ -72,17 +72,17 @@ export function TattooAftercareSection() {
 
           <div className="mt-10 grid gap-10 lg:grid-cols-2">
             <div>
-              <h3 className="font-serif text-xl text-[var(--ivory)]">Traditional aftercare</h3>
-              <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm leading-relaxed text-[var(--ivory)]/75">
+              <h3 className="font-serif text-xl text-ivory">Traditional aftercare</h3>
+              <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm leading-relaxed text-ivory/75">
                 {OLD_NORTH_END_AFTERCARE_TEXT.traditional.map((step) => (
                   <li key={step}>{step}</li>
                 ))}
               </ol>
             </div>
             <div>
-              <h3 className="font-serif text-xl text-[var(--ivory)]">Second skin aftercare</h3>
-              <p className="mt-2 text-sm text-[var(--brass)]">{OLD_NORTH_END_AFTERCARE_TEXT.secondSkinNote}</p>
-              <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm leading-relaxed text-[var(--ivory)]/75">
+              <h3 className="font-serif text-xl text-ivory">Second skin aftercare</h3>
+              <p className="mt-2 text-sm text-brass">{OLD_NORTH_END_AFTERCARE_TEXT.secondSkinNote}</p>
+              <ol className="mt-4 list-decimal space-y-2 pl-5 text-sm leading-relaxed text-ivory/75">
                 {OLD_NORTH_END_AFTERCARE_TEXT.secondSkin.map((step) => (
                   <li key={step}>{step}</li>
                 ))}
@@ -92,19 +92,19 @@ export function TattooAftercareSection() {
 
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             <div className="border border-white/[0.08] p-5">
-              <h4 className="text-xs uppercase tracking-[0.3em] text-[var(--brass)]">What to expect</h4>
-              <ul className="mt-3 space-y-2 text-sm text-[var(--ivory)]/75">
+              <h4 className="text-xs uppercase tracking-[0.3em] text-brass">What to expect</h4>
+              <ul className="mt-3 space-y-2 text-sm text-ivory/75">
                 {OLD_NORTH_END_AFTERCARE_TEXT.whatToExpect.map((line) => (
                   <li key={line}>{line}</li>
                 ))}
               </ul>
             </div>
-            <div className="border border-[var(--accent)]/40 bg-[var(--accent)]/5 p-5">
-              <h4 className="text-xs uppercase tracking-[0.3em] text-[var(--brass)]">Questions or infection?</h4>
-              <p className="mt-3 text-sm leading-relaxed text-[var(--ivory)]/85">
+            <div className="border border-accent/40 bg-accent/5 p-5">
+              <h4 className="text-xs uppercase tracking-[0.3em] text-brass">Questions or infection?</h4>
+              <p className="mt-3 text-sm leading-relaxed text-ivory/85">
                 {OLD_NORTH_END_AFTERCARE_TEXT.infection}
               </p>
-              <p className="mt-3 text-sm font-medium text-[var(--ivory)]">{OLD_NORTH_END_AFTERCARE_TEXT.warningSigns}</p>
+              <p className="mt-3 text-sm font-medium text-ivory">{OLD_NORTH_END_AFTERCARE_TEXT.warningSigns}</p>
             </div>
           </div>
 
@@ -116,7 +116,7 @@ export function TattooAftercareSection() {
               height={1100}
               className="h-auto w-full object-contain object-top"
             />
-            <figcaption className="bg-black/60 px-3 py-2 text-center text-[10px] leading-snug text-[var(--ivory)]/50">
+            <figcaption className="bg-black/60 px-3 py-2 text-center text-[10px] leading-snug text-ivory/50">
               {OLD_NORTH_END_AFTERCARE_TEXT.footer} — tap View aftercare or Print for full US Letter size.
             </figcaption>
           </figure>

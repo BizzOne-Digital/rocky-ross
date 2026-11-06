@@ -61,7 +61,7 @@ export function HeroSection({
         >
           <motion.p
             variants={item}
-            className="font-sans text-[11px] font-medium uppercase tracking-[0.38em] text-[var(--ivory)]/75"
+            className="font-sans text-[11px] font-medium uppercase tracking-[0.38em] text-ivory/75"
           >
             Colorado Springs, CO
           </motion.p>
@@ -108,21 +108,21 @@ export function HeroSection({
             </Link>
             <a
               href={directionsUrl}
-              className="inline-flex w-fit items-center gap-2 font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-[var(--ivory)]/85 underline decoration-[var(--ivory)]/35 underline-offset-[6px] transition hover:text-white hover:decoration-white/60"
+              className="inline-flex w-fit items-center gap-2 font-sans text-[11px] font-medium uppercase tracking-[0.22em] text-ivory/85 underline decoration-ivory/35 underline-offset-[6px] transition hover:text-white hover:decoration-white/60"
             >
-              <MapPin className="w-4 h-4 text-[var(--ivory)]/70" />
+              <MapPin className="w-4 h-4 text-ivory/70" />
               Get directions
             </a>
           </motion.div>
 
-          <motion.p variants={item} className="mt-14 font-sans text-[11px] tracking-wide text-[var(--ivory)]/40">
+          <motion.p variants={item} className="mt-14 font-sans text-[11px] tracking-wide text-ivory/40">
             {shortAddress}
           </motion.p>
         </motion.div>
 
         <div className="mt-auto flex flex-col gap-6 border-t border-white/[0.12] pt-6 md:flex-row md:items-end md:justify-between">
           <nav
-            className="flex flex-wrap items-center gap-x-4 gap-y-2 font-sans text-[12px] font-light tracking-wide text-[var(--ivory)]/75 md:text-[13px]"
+            className="flex flex-wrap items-center gap-x-4 gap-y-2 font-sans text-[12px] font-light tracking-wide text-ivory/75 md:text-[13px]"
             aria-label="Businesses on property"
           >
             {businesses.map((b, i) => (
@@ -137,9 +137,9 @@ export function HeroSection({
 
           <Link
             href="/#businesses"
-            className="hidden items-center gap-3 self-end font-sans text-[10px] uppercase tracking-[0.35em] text-[var(--ivory)]/45 md:flex"
+            className="hidden items-center gap-3 self-end font-sans text-[10px] uppercase tracking-[0.35em] text-ivory/45 md:flex"
           >
-            <span className="h-10 w-px bg-[var(--ivory)]/25" aria-hidden="true" />
+            <span className="h-10 w-px bg-ivory/25" aria-hidden="true" />
             Scroll
             <ChevronDown className="w-4 h-4 animate-bounce motion-reduce:animate-none" />
           </Link>

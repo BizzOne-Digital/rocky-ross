@@ -6,7 +6,7 @@ import { HUB_CAMPUS_SERVICE_LINE } from "@/lib/hub-home-copy";
 import { SITE_CONTAINER, SITE_HEADER_OFFSET } from "@/lib/site-layout";
 
 function GoldRule({ className = "" }: { className?: string }) {
-  return <span className={`inline-block h-px bg-[var(--brass)]/70 ${className}`} aria-hidden="true" />;
+  return <span className={`inline-block h-px bg-brass/70 ${className}`} aria-hidden="true" />;
 }
 
 export function HubHeroSection({
@@ -19,7 +19,7 @@ export function HubHeroSection({
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative overflow-hidden border-b border-[var(--brass)]/20 bg-[#050608]">
+    <section className="relative overflow-hidden border-b border-brass/20 bg-[#050608]">
       <div
         className="pointer-events-none absolute inset-y-0 left-0 z-10 w-2.5 opacity-50 sm:w-4 md:w-5"
         aria-hidden="true"
@@ -53,10 +53,10 @@ export function HubHeroSection({
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="mx-auto max-w-4xl text-center"
         >
-          <h1 className="font-serif text-[clamp(1.75rem,6vw,3.25rem)] font-medium leading-tight text-[var(--ivory)]">
+          <h1 className="font-serif text-[clamp(1.75rem,6vw,3.25rem)] font-medium leading-tight text-ivory">
             {brandName}
           </h1>
-          <div className="mt-3 flex items-center justify-center gap-3 font-sans text-[9px] font-medium uppercase tracking-[0.28em] text-[var(--brass)] sm:text-[10px] sm:tracking-[0.38em]">
+          <div className="mt-3 flex items-center justify-center gap-3 font-sans text-[9px] font-medium uppercase tracking-[0.28em] text-brass sm:text-[10px] sm:tracking-[0.38em]">
             <GoldRule className="w-8 sm:w-14" />
             <span>A.K.A. The Double R Group</span>
             <GoldRule className="w-8 sm:w-14" />
@@ -64,32 +64,32 @@ export function HubHeroSection({
 
           <div className="mt-10 flex items-center justify-center gap-3 sm:mt-12 sm:gap-4">
             <GoldRule className="hidden w-10 sm:block sm:w-16" />
-            <DiamondStar className="h-2.5 w-2.5 shrink-0 text-[var(--brass)] sm:h-3 sm:w-3" />
-            <p className="font-serif text-[clamp(1.75rem,7vw,3.5rem)] font-medium leading-none text-[var(--ivory)]">
-              INKED <span className="text-[var(--hub-teal)]">&</span> INFUSED
+            <DiamondStar className="h-2.5 w-2.5 shrink-0 text-brass sm:h-3 sm:w-3" />
+            <p className="font-serif text-[clamp(1.75rem,7vw,3.5rem)] font-medium leading-none text-ivory">
+              INKED <span className="text-hub-teal">&</span> INFUSED
             </p>
-            <DiamondStar className="h-2.5 w-2.5 shrink-0 text-[var(--brass)] sm:h-3 sm:w-3" />
+            <DiamondStar className="h-2.5 w-2.5 shrink-0 text-brass sm:h-3 sm:w-3" />
             <GoldRule className="hidden w-10 sm:block sm:w-16" />
           </div>
 
-          <p className="mt-6 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 font-sans text-[10px] font-medium uppercase tracking-[0.18em] text-[var(--ivory)] sm:text-[11px] sm:tracking-[0.24em]">
+          <p className="mt-6 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 font-sans text-[10px] font-medium uppercase tracking-[0.18em] text-ivory sm:text-[11px] sm:tracking-[0.24em]">
             {HUB_CAMPUS_SERVICE_LINE.map((word, i) => (
               <span key={word} className="inline-flex items-center gap-2">
-                {i > 0 && <span className="text-[var(--hub-teal)]" aria-hidden="true">•</span>}
+                {i > 0 && <span className="text-hub-teal" aria-hidden="true">•</span>}
                 <span>{word}</span>
               </span>
             ))}
           </p>
 
-          <p className="mt-6 font-serif text-[clamp(1.35rem,5vw,2.25rem)] font-medium uppercase leading-tight tracking-[0.06em] text-[var(--ivory)]">
+          <p className="mt-6 font-serif text-[clamp(1.35rem,5vw,2.25rem)] font-medium uppercase leading-tight tracking-[0.06em] text-ivory">
             All Under One Roof
           </p>
 
-          <div className="mx-auto mt-8 max-w-2xl border-y border-[var(--brass)]/45 py-5 sm:py-6">
-            <p className="font-sans text-sm leading-relaxed text-[var(--brass)] md:text-[15px]">
+          <div className="mx-auto mt-8 max-w-2xl border-y border-brass/45 py-5 sm:py-6">
+            <p className="font-sans text-sm leading-relaxed text-brass md:text-[15px]">
               Yes, we do a lot—but we&apos;re so passionate about everything we do.
             </p>
-            <p className="mt-2 font-sans text-sm leading-relaxed text-[var(--brass)] md:text-[15px]">
+            <p className="mt-2 font-sans text-sm leading-relaxed text-brass md:text-[15px]">
               Your support keeps small businesses like ours going. Thank you!
             </p>
           </div>

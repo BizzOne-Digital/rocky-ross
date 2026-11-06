@@ -17,7 +17,7 @@ export function SiteLogo({
     <Link
       href="/"
       className={cn(
-        "inline-flex shrink-0 items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--brass)]",
+        "inline-flex shrink-0 items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brass",
         className,
       )}
       aria-label="Inked and Infused — home"

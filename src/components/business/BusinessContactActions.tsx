@@ -19,7 +19,7 @@ export function BusinessContactActions({
       <Button href={smsHref(phone)} variant="outline" className="justify-center">
         Text
       </Button>
-      <Button href={consultationHref} variant="outline" className="justify-center border-[var(--brass)] text-[var(--brass)]">
+      <Button href={consultationHref} variant="outline" className="justify-center border-brass text-brass">
         Request a consultation
       </Button>
     </div>

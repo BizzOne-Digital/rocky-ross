@@ -20,7 +20,7 @@ const PROGRAMMING = [
 export function TequilaBarPageSections() {
   return (
     <>
-      <section className={`border-y border-[var(--brass)]/15 bg-black/45 ${SITE_SECTION_Y}`}>
+      <section className={`border-y border-brass/15 bg-black/45 ${SITE_SECTION_Y}`}>
         <div className={SITE_CONTAINER}>
           <Reveal>
             <SectionHeading
@@ -28,12 +28,12 @@ export function TequilaBarPageSections() {
               title="Bar, garden & cigar lounge"
               description="Family-friendly hospitality before 9 PM. Bar, restaurant, garden, and all patios are 21+ after 9 PM. Pet-friendly patios only — not tattoo procedure areas. Call ahead for cigar-lounge availability."
             />
-            <ul className="mt-8 space-y-2 font-sans text-sm text-[var(--ivory)]/80">
+            <ul className="mt-8 space-y-2 font-sans text-sm text-ivory/80">
               {BAR_HOURS.map((line) => (
                 <li key={line}>{line}</li>
               ))}
             </ul>
-            <p className="mt-6 rounded border border-[var(--brass)]/30 bg-[var(--brass)]/5 px-4 py-3 text-sm text-[var(--ivory)]/75">
+            <p className="mt-6 rounded border border-brass/30 bg-brass/5 px-4 py-3 text-sm text-ivory/75">
               <strong>Saturday, October 17, 2026 anniversary:</strong> 3 PM – 2 AM Sunday (dated event — not regular
               Saturday hours). No unconfirmed performers, prices, or giveaways on the public site.
             </p>
@@ -43,12 +43,12 @@ export function TequilaBarPageSections() {
       <section className={`${SITE_CONTAINER} ${SITE_SECTION_Y}`}>
         <Reveal>
           <SectionHeading label="Weekly" title="Programming" />
-          <ul className="mt-6 space-y-4 font-sans text-sm leading-relaxed text-[var(--ivory)]/75">
+          <ul className="mt-6 space-y-4 font-sans text-sm leading-relaxed text-ivory/75">
             {PROGRAMMING.map((item) => (
-              <li key={item} className="border-l-2 border-[var(--hub-teal)]/50 pl-4">{item}</li>
+              <li key={item} className="border-l-2 border-hub-teal/50 pl-4">{item}</li>
             ))}
           </ul>
-          <p className="mt-8 text-sm text-[var(--ivory)]/50">
+          <p className="mt-8 text-sm text-ivory/50">
             Drink menu and tequila selection PDFs publish when current approved masters are received.
           </p>
         </Reveal>

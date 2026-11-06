@@ -40,17 +40,17 @@ function InquireRow({
   return (
     <Link
       href="#inquiry"
-      className="group flex h-full min-h-[5.75rem] w-full min-w-0 items-center gap-2 border border-[var(--brass)]/25 bg-black/50 px-3 py-3 transition hover:border-[var(--brass)]/55 hover:bg-black/70 sm:gap-4 sm:px-5"
+      className="group flex h-full min-h-[5.75rem] w-full min-w-0 items-center gap-2 border border-brass/25 bg-black/50 px-3 py-3 transition hover:border-brass/55 hover:bg-black/70 sm:gap-4 sm:px-5"
     >
       {thumbSrc ? (
-        <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded border border-[var(--brass)]/35 bg-white sm:h-14 sm:w-14">
+        <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded border border-brass/35 bg-white sm:h-14 sm:w-14">
           <Image src={thumbSrc} alt={thumbAlt ?? title} fill className="object-contain p-0.5" sizes="56px" />
         </div>
       ) : null}
-      <span className="min-w-0 flex-1 font-sans text-sm leading-snug text-[var(--ivory)] line-clamp-2">
+      <span className="min-w-0 flex-1 font-sans text-sm leading-snug text-ivory line-clamp-2">
         {title}
       </span>
-      <span className="w-[3.5rem] shrink-0 text-right text-[9px] uppercase tracking-[0.14em] text-[var(--brass)] group-hover:text-[var(--ivory)] sm:w-[4.25rem] sm:text-[10px] sm:tracking-[0.2em]">
+      <span className="w-[3.5rem] shrink-0 text-right text-[9px] uppercase tracking-[0.14em] text-brass group-hover:text-ivory sm:w-[4.25rem] sm:text-[10px] sm:tracking-[0.2em]">
         Inquire
       </span>
     </Link>
@@ -68,18 +68,18 @@ function BioDetails({
 }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className="border border-[var(--brass)]/30 bg-black/50">
+    <div className="border border-brass/30 bg-black/50">
       <button
         type="button"
-        className="flex w-full items-center justify-between gap-3 px-4 py-4 text-left font-sans text-sm font-medium text-[var(--ivory)] transition hover:bg-[var(--brass)]/[0.06] sm:gap-4 sm:px-5"
+        className="flex w-full items-center justify-between gap-3 px-4 py-4 text-left font-sans text-sm font-medium text-ivory transition hover:bg-brass/10 sm:gap-4 sm:px-5"
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
       >
         {title}
-        <span className="text-[var(--brass)]">{open ? "−" : "+"}</span>
+        <span className="text-brass">{open ? "−" : "+"}</span>
       </button>
       {open && (
-        <div className="border-t border-[var(--brass)]/15 px-5 py-4 font-sans text-sm leading-relaxed text-[var(--ivory)]/75">
+        <div className="border-t border-brass/15 px-5 py-4 font-sans text-sm leading-relaxed text-ivory/75">
           {children}
         </div>
       )}
@@ -90,13 +90,13 @@ function BioDetails({
 export function RossSquadDjPageSections() {
   return (
     <>
-      <section className={`border-t border-[var(--brass)]/15 bg-black/45 ${SITE_SECTION_Y}`}>
+      <section className={`border-t border-brass/15 bg-black/45 ${SITE_SECTION_Y}`}>
         <div className={SITE_CONTAINER}>
           <Reveal>
             <SectionHeading label="About" title="DJ Rocky Ross" />
             <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1fr)_200px] lg:items-start">
               <div className="space-y-8">
-                <p className="max-w-3xl font-sans text-base leading-relaxed text-[var(--ivory)]/90 md:text-lg">
+                <p className="max-w-3xl font-sans text-base leading-relaxed text-ivory/90 md:text-lg">
                   Award-winning DJ, turntablist and event producer known for versatile music selection, creative mixing
                   and technical scratching — from weddings and private celebrations to corporate events, festivals and
                   nightclubs.
@@ -105,10 +105,10 @@ export function RossSquadDjPageSections() {
                   {BIO_STATS.map((s) => (
                     <li
                       key={s.label}
-                      className="rounded border border-[var(--brass)]/30 bg-[var(--brass)]/5 px-4 py-3 text-center min-[400px]:text-center"
+                      className="rounded border border-brass/30 bg-brass/5 px-4 py-3 text-center min-[400px]:text-center"
                     >
-                      <p className="font-serif text-xl text-[var(--ivory)]">{s.value}</p>
-                      <p className="mt-1 text-[10px] uppercase tracking-[0.2em] text-[var(--ivory)]/50">{s.label}</p>
+                      <p className="font-serif text-xl text-ivory">{s.value}</p>
+                      <p className="mt-1 text-[10px] uppercase tracking-[0.2em] text-ivory/50">{s.label}</p>
                     </li>
                   ))}
                 </ul>
@@ -135,15 +135,15 @@ export function RossSquadDjPageSections() {
                     </p>
                   </BioDetails>
                 </div>
-                <p className="max-w-3xl font-sans text-sm leading-relaxed text-[var(--ivory)]/75">
+                <p className="max-w-3xl font-sans text-sm leading-relaxed text-ivory/75">
                   Based in Colorado Springs, Rocky leads Ross Squad DJs — DJ and MC entertainment, event and music
                   production, equipment rentals, lessons, custom mixes and internship/mentorship, with packages tailored
                   to each client&apos;s vision.
                 </p>
-                <p className="text-xs text-[var(--ivory)]/45">
+                <p className="text-xs text-ivory/45">
                   <a
                     href={DJ_CAREER_VIDEO_URL}
-                    className="text-[var(--brass)] underline"
+                    className="text-brass underline"
                     rel="noopener noreferrer"
                     target="_blank"
                   >
@@ -178,7 +178,7 @@ export function RossSquadDjPageSections() {
         </div>
       </section>
 
-      <section className={`border-y border-[var(--brass)]/15 bg-black/45 ${SITE_SECTION_Y}`}>
+      <section className={`border-y border-brass/15 bg-black/45 ${SITE_SECTION_Y}`}>
         <div className={SITE_CONTAINER}>
           <Reveal>
             <SectionHeading label="Services" title="Entertainment & creative" />
@@ -186,13 +186,13 @@ export function RossSquadDjPageSections() {
               {SERVICE_BULLETS.map((line) => (
                 <li
                   key={line}
-                  className="border-l-2 border-[var(--hub-teal)]/60 py-1 pl-3 font-sans text-sm text-[var(--ivory)]/80"
+                  className="border-l-2 border-hub-teal/60 py-1 pl-3 font-sans text-sm text-ivory/80"
                 >
                   {line}
                 </li>
               ))}
             </ul>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-8 border-y border-[var(--brass)]/15 py-10 sm:gap-12 md:gap-14">
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-8 border-y border-brass/15 py-10 sm:gap-12 md:gap-14">
               <div className="relative h-[4.5rem] w-44 sm:h-20 sm:w-52">
                 <Image
                   src={DJ_ASSETS.doubleRProductionz}
@@ -225,8 +225,8 @@ export function RossSquadDjPageSections() {
             <div className="mt-10">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
                 <div>
-                  <h3 className="font-serif text-2xl text-[var(--ivory)]">Rentals & enhancements</h3>
-                  <p className="mt-2 max-w-xl text-sm text-[var(--ivory)]/55">
+                  <h3 className="font-serif text-2xl text-ivory">Rentals & enhancements</h3>
+                  <p className="mt-2 max-w-xl text-sm text-ivory/55">
                     Inquire for availability — capacities, operators and permissions are confirmed per event.
                   </p>
                 </div>
@@ -259,14 +259,14 @@ export function RossSquadDjPageSections() {
       <section className={`${SITE_CONTAINER} ${SITE_SECTION_Y}`}>
         <Reveal>
           <SectionHeading label="Instruction" title="DJ lessons" />
-          <p className="mt-4 max-w-3xl font-sans text-sm leading-relaxed text-[var(--ivory)]/75">
+          <p className="mt-4 max-w-3xl font-sans text-sm leading-relaxed text-ivory/75">
             Hands-on instruction from beginner through advanced. Skills include {DJ_LESSON_SKILLS}
           </p>
-          <p className="mt-4 max-w-3xl text-sm text-[var(--ivory)]/80">
+          <p className="mt-4 max-w-3xl text-sm text-ivory/80">
             <strong>Introductory private lesson:</strong> $99 for one hour (owner-approved). Other packages are custom
             quoted.
           </p>
-          <div className="relative mt-8 aspect-[16/7] max-w-4xl overflow-hidden rounded border border-[var(--brass)]/30 bg-black/60">
+          <div className="relative mt-8 aspect-[16/7] max-w-4xl overflow-hidden rounded border border-brass/30 bg-black/60">
             <Image
               src={DJ_ASSETS.lessonCertificate}
               alt="Example DJ lesson gift certificate"
@@ -278,15 +278,15 @@ export function RossSquadDjPageSections() {
         </Reveal>
       </section>
 
-      <section className={`border-y border-[var(--brass)]/15 bg-black/45 ${SITE_SECTION_Y}`}>
+      <section className={`border-y border-brass/15 bg-black/45 ${SITE_SECTION_Y}`}>
         <div className={SITE_CONTAINER}>
           <Reveal>
             <SectionHeading label="Audio" title="Custom mixes & mixtapes" />
-            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-[var(--ivory)]/75">
+            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-ivory/75">
               Personal and business mixes — any occasion, style or genre, mashups and remixes. Share energy, length and
               deadline for a custom quote.
             </p>
-            <div className="relative mt-8 aspect-[16/7] max-w-4xl overflow-hidden rounded border border-[var(--brass)]/30 bg-black/60">
+            <div className="relative mt-8 aspect-[16/7] max-w-4xl overflow-hidden rounded border border-brass/30 bg-black/60">
               <Image
                 src={DJ_ASSETS.customMixCertificate}
                 alt="Example custom mix gift certificate"
@@ -302,18 +302,18 @@ export function RossSquadDjPageSections() {
       <section className={`${SITE_CONTAINER} ${SITE_SECTION_Y}`}>
         <Reveal>
           <SectionHeading label="Studio" title="Music production" />
-          <p className="mt-4 max-w-2xl text-sm text-[var(--ivory)]/75">
+          <p className="mt-4 max-w-2xl text-sm text-ivory/75">
             Remixes and mashups tailored to your project — contact Rocky to discuss goals and a custom quote.
           </p>
         </Reveal>
       </section>
 
-      <section className={`border-y border-[var(--brass)]/15 bg-black/45 ${SITE_SECTION_Y}`}>
+      <section className={`border-y border-brass/15 bg-black/45 ${SITE_SECTION_Y}`}>
         <div className={SITE_CONTAINER}>
           <Reveal>
             <SectionHeading label="Program" title="DJ internship / mentorship" />
-            <p className="mt-2 font-serif text-xl text-[var(--brass)]">Learn. Experience. Level up.</p>
-            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-[var(--ivory)]/75">
+            <p className="mt-2 font-serif text-xl text-brass">Learn. Experience. Level up.</p>
+            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-ivory/75">
               Hands-on training and event production with Rocky — inquire about current availability (not a guaranteed
               open slot, employment, or fixed duration).
             </p>
@@ -328,7 +328,7 @@ export function RossSquadDjPageSections() {
             {DJ_AWARDS.map((a) => (
               <li
                 key={`${a.program}-${a.year}-${a.level}-${a.title}`}
-                className="border-l-2 border-[var(--brass)]/50 pl-4 text-sm text-[var(--ivory)]/85"
+                className="border-l-2 border-brass/50 pl-4 text-sm text-ivory/85"
               >
                 <strong>{a.program}</strong>
                 {a.year && ` · ${a.year}`}
@@ -337,35 +337,35 @@ export function RossSquadDjPageSections() {
               </li>
             ))}
           </ul>
-          <p className="mt-6 text-sm italic text-[var(--ivory)]/70">
+          <p className="mt-6 text-sm italic text-ivory/70">
             Plus many more awards and recognitions across different countries, cities and states.
           </p>
         </Reveal>
       </section>
 
-      <section className={`border-t border-[var(--brass)]/25 bg-[#0e1412] ${SITE_SECTION_Y}`}>
+      <section className={`border-t border-brass/25 bg-[#0e1412] ${SITE_SECTION_Y}`}>
         <div className={`${SITE_CONTAINER} text-center`}>
           <Reveal>
-            <h2 className="text-balance font-serif text-2xl text-[var(--ivory)] sm:text-3xl">Custom event pricing</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-[var(--ivory)]/70">
+            <h2 className="text-balance font-serif text-2xl text-ivory sm:text-3xl">Custom event pricing</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-ivory/70">
               Custom packages by date, location, hours, guest count and gear. An inquiry does not confirm a booking.
             </p>
             <div className="mt-8 flex w-full max-w-lg flex-col items-stretch gap-3 sm:mx-auto sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4">
               <Link
                 href="#inquiry"
-                className="inline-flex justify-center rounded-full border border-[var(--brass)] bg-[var(--brass)]/10 px-6 py-3 text-center font-sans text-[10px] uppercase tracking-[0.18em] text-[var(--brass)] transition hover:bg-[var(--brass)]/20 sm:px-8 sm:text-[11px] sm:tracking-[0.22em]"
+                className="inline-flex justify-center rounded-full border border-brass bg-brass/10 px-6 py-3 text-center font-sans text-[10px] uppercase tracking-[0.18em] text-brass transition hover:bg-brass/20 sm:px-8 sm:text-[11px] sm:tracking-[0.22em]"
               >
                 Build my event package
               </Link>
               <a
                 href={phoneHref(OWNER_CONTACTS.ownerPhone)}
-                className="text-center text-sm text-[var(--ivory)]/80 sm:text-left"
+                className="text-center text-sm text-ivory/80 sm:text-left"
               >
                 {OWNER_CONTACTS.ownerPhoneDisplay}
               </a>
               <a
                 href={`mailto:${OWNER_CONTACTS.djEvents.email}`}
-                className="break-all text-center text-sm text-[var(--brass)] sm:text-left"
+                className="break-all text-center text-sm text-brass sm:text-left"
               >
                 {OWNER_CONTACTS.djEvents.email}
               </a>

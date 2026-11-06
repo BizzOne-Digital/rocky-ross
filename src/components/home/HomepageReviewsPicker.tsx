@@ -19,7 +19,7 @@ function ReviewLinkButton({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex max-w-full items-center justify-center border border-[var(--brass)] bg-black/45 px-4 py-2.5 text-center font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--ivory)] transition hover:bg-[var(--brass)]/15 sm:text-xs sm:tracking-[0.2em]"
+      className="inline-flex max-w-full items-center justify-center border border-brass bg-black/45 px-4 py-2.5 text-center font-sans text-[11px] font-semibold uppercase tracking-[0.16em] text-ivory transition hover:bg-brass/15 sm:text-xs sm:tracking-[0.2em]"
     >
       {children}
     </a>
@@ -32,14 +32,14 @@ export function HomepageReviewsPicker() {
 
   return (
     <div className="mx-auto mt-8 max-w-xl min-w-0 text-left">
-      <label htmlFor="review-business" className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-[var(--hub-teal)]">
+      <label htmlFor="review-business" className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-hub-teal">
         Choose a business to review
       </label>
       <select
         id="review-business"
         value={slug}
         onChange={(e) => setSlug(e.target.value as BusinessSlug)}
-        className="mt-2 w-full min-w-0 border border-[var(--brass)]/70 bg-black/60 px-3 py-3 font-sans text-sm text-[var(--ivory)]"
+        className="mt-2 w-full min-w-0 border border-brass/70 bg-black/60 px-3 py-3 font-sans text-sm text-ivory"
       >
         {HOMEPAGE_REVIEW_BUSINESS_ORDER.map((id) => (
           <option key={id} value={id}>

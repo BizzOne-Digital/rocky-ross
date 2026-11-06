@@ -22,7 +22,7 @@ const PILLARS = [
 
 export function HomeExperienceSection() {
   return (
-    <section className="relative overflow-hidden border-y border-[var(--brass)]/15 bg-black/45">
+    <section className="relative overflow-hidden border-y border-brass/15 bg-black/45">
       <div
         className="pointer-events-none absolute inset-0 opacity-30"
         style={{
@@ -48,7 +48,7 @@ export function HomeExperienceSection() {
           {PILLARS.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.08}>
               <article
-                className="group relative overflow-hidden border border-[var(--brass)]/30 bg-black/55 p-8 transition duration-500 hover:border-[var(--brass)]/50 hover:bg-black/75"
+                className="group relative overflow-hidden border border-brass/30 bg-black/55 p-8 transition duration-500 hover:border-brass/50 hover:bg-black/75"
               >
                 <div
                   className="absolute -right-6 -top-6 h-24 w-24 rounded-full opacity-20 blur-2xl transition group-hover:opacity-35"
@@ -56,15 +56,15 @@ export function HomeExperienceSection() {
                   aria-hidden="true"
                 />
                 <span
-                  className="font-serif text-5xl font-medium text-[var(--ivory)]/15 transition group-hover:text-[var(--ivory)]/25"
+                  className="font-serif text-5xl font-medium text-ivory/15 transition group-hover:text-ivory/25"
                   aria-hidden="true"
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h3 className="mt-4 font-serif text-2xl text-[var(--ivory)]">{p.title}</h3>
-                <p className="mt-3 font-sans text-sm leading-relaxed text-[var(--ivory)]/60">{p.body}</p>
+                <h3 className="mt-4 font-serif text-2xl text-ivory">{p.title}</h3>
+                <p className="mt-3 font-sans text-sm leading-relaxed text-ivory/60">{p.body}</p>
                 <div
-                  className="mt-6 h-0.5 w-0 bg-gradient-to-r from-[var(--brass)] to-transparent transition-all duration-500 group-hover:w-full"
+                  className="mt-6 h-0.5 w-0 bg-gradient-to-r from-brass to-transparent transition-all duration-500 group-hover:w-full"
                   style={{ ["--brass" as string]: p.accent }}
                 />
               </article>

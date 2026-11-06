@@ -25,7 +25,7 @@ export default async function HomePage() {
   return (
     <>
       {!hasMongo() && (
-        <div className="bg-[var(--burgundy)] px-4 py-2 text-center text-xs uppercase tracking-widest text-[var(--ivory)]">
+        <div className="bg-burgundy px-4 py-2 text-center text-xs uppercase tracking-widest text-ivory">
           Preview mode — connect MongoDB for live content & form storage
         </div>
       )}

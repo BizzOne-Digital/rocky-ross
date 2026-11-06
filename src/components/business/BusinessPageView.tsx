@@ -168,7 +168,7 @@ export function BusinessPageView({
 
   return (
     <div
-      className="campus-hub-theme w-full min-w-0 max-w-full overflow-x-clip bg-[#030304] text-[var(--ivory)]"
+      className="campus-hub-theme w-full min-w-0 max-w-full overflow-x-clip bg-[#030304] text-ivory"
       style={{ ["--accent" as string]: business.accentColor }}
     >
       <section
@@ -218,17 +218,17 @@ export function BusinessPageView({
                 />
               </div>
             )}
-            <p className="font-sans text-[10px] font-medium uppercase tracking-[0.22em] text-[var(--brass)] sm:text-[11px] sm:tracking-[0.4em]">
+            <p className="font-sans text-[10px] font-medium uppercase tracking-[0.22em] text-brass sm:text-[11px] sm:tracking-[0.4em]">
               {business.heroEyebrow}
             </p>
-            <h1 className="mt-4 break-words font-serif text-[clamp(1.875rem,8.5vw,5.5rem)] font-medium leading-[0.98] text-[var(--ivory)] sm:mt-5">
+            <h1 className="mt-4 break-words font-serif text-[clamp(1.875rem,8.5vw,5.5rem)] font-medium leading-[0.98] text-ivory sm:mt-5">
               {business.heroTitle || business.name}
             </h1>
-            <p className="mt-5 max-w-2xl text-pretty font-sans text-xs font-medium uppercase tracking-[0.1em] text-[var(--ivory)]/85 sm:text-sm sm:tracking-[0.12em] md:text-base">
+            <p className="mt-5 max-w-2xl text-pretty font-sans text-xs font-medium uppercase tracking-[0.1em] text-ivory/85 sm:text-sm sm:tracking-[0.12em] md:text-base">
               {business.heroSubtitle}
             </p>
             {isOldNorthEnd && (
-              <p className="mt-4 max-w-2xl font-serif text-xl font-light italic text-[var(--ivory)]/80 md:text-2xl">
+              <p className="mt-4 max-w-2xl font-serif text-xl font-light italic text-ivory/80 md:text-2xl">
                 Great tattoos. Great experiences. A place you&apos;ll want to return to.
               </p>
             )}
@@ -239,7 +239,7 @@ export function BusinessPageView({
               />
             )}
             {business.status === "coming_soon" && (
-              <span className="mt-6 inline-block border border-[var(--brass)] px-3 py-1 text-xs uppercase tracking-widest text-[var(--brass)]">
+              <span className="mt-6 inline-block border border-brass px-3 py-1 text-xs uppercase tracking-widest text-brass">
                 Coming soon
               </span>
             )}
@@ -257,7 +257,7 @@ export function BusinessPageView({
             )}
             {!isOldNorthEnd && <SectionHeading label="About" title={business.name} />}
             <div
-              className="prose prose-invert max-w-3xl border-l-2 border-[var(--accent)]/40 pl-5 sm:pl-8 md:pl-10"
+              className="prose prose-invert max-w-3xl border-l-2 border-accent/40 pl-5 sm:pl-8 md:pl-10"
               dangerouslySetInnerHTML={{ __html: business.introHtml }}
             />
           </Reveal>
@@ -268,10 +268,10 @@ export function BusinessPageView({
         <section id="about" className={`${SITE_CONTAINER} pb-8 pt-4 md:pb-10`}>
           <Reveal>
             <div
-              className="mx-auto max-w-3xl border-l-2 border-[var(--brass)]/50 py-1 pl-5 sm:pl-8"
+              className="mx-auto max-w-3xl border-l-2 border-brass/50 py-1 pl-5 sm:pl-8"
             >
               <div
-                className="font-sans text-sm leading-relaxed text-[var(--ivory)]/80 md:text-base"
+                className="font-sans text-sm leading-relaxed text-ivory/80 md:text-base"
                 dangerouslySetInnerHTML={{ __html: business.introHtml }}
               />
             </div>
@@ -293,7 +293,7 @@ export function BusinessPageView({
       {isDj && <RossSquadDjPageSections />}
 
       {business.services && business.services.length > 0 && !isDj && (
-        <section className={`border-y border-[var(--brass)]/15 bg-black/45 ${SITE_SECTION_Y}`}>
+        <section className={`border-y border-brass/15 bg-black/45 ${SITE_SECTION_Y}`}>
           <div className={SITE_CONTAINER}>
             <Reveal>
               <SectionHeading label="Offerings" title="Services" />
@@ -308,7 +308,7 @@ export function BusinessPageView({
                   >
                     <div className="flex items-start gap-4">
                       {imageSrc && (
-                        <div className="relative h-20 w-28 shrink-0 overflow-hidden border border-[var(--brass)]/25 bg-black/50">
+                        <div className="relative h-20 w-28 shrink-0 overflow-hidden border border-brass/25 bg-black/50">
                           <Image
                             src={imageSrc}
                             alt={s.name}
@@ -320,11 +320,11 @@ export function BusinessPageView({
                         </div>
                       )}
                       <div>
-                        <p className="text-lg text-[var(--ivory)]">{s.name}</p>
-                        {s.description && <p className="text-sm text-[var(--ivory)]/60">{s.description}</p>}
+                        <p className="text-lg text-ivory">{s.name}</p>
+                        {s.description && <p className="text-sm text-ivory/60">{s.description}</p>}
                       </div>
                     </div>
-                    <p className="font-serif text-xl text-[var(--brass)] md:text-right">{formatServicePrice(s)}</p>
+                    <p className="font-serif text-xl text-brass md:text-right">{formatServicePrice(s)}</p>
                   </li>
                   );
                 })}
@@ -341,27 +341,27 @@ export function BusinessPageView({
             <div className="mt-8 space-y-10">
               {business.categories.map((cat) => (
                 <div key={String(cat._id)}>
-                  <h3 className="text-xs uppercase tracking-[0.35em] text-[var(--brass)]">{cat.name}</h3>
+                  <h3 className="text-xs uppercase tracking-[0.35em] text-brass">{cat.name}</h3>
                   <ul className="mt-4 space-y-3">
                     {(business.menuItems ?? [])
                       .filter((i) => String(i.categoryId) === String(cat._id))
                       .map((item) => (
                         <li key={item.name} className="flex justify-between gap-4 border-b border-white/5 pb-3">
                           <div className="min-w-0 flex-1">
-                            <p className="text-[var(--ivory)]">
+                            <p className="text-ivory">
                               {item.name}
                               {item.soldOut && (
-                                <span className="ml-2 text-xs uppercase text-[var(--brass)]">Sold out</span>
+                                <span className="ml-2 text-xs uppercase text-brass">Sold out</span>
                               )}
                               {item.isSpecial && (
-                                <span className="ml-2 text-xs uppercase text-[var(--accent)]">Special</span>
+                                <span className="ml-2 text-xs uppercase text-accent">Special</span>
                               )}
                             </p>
                             {item.description && (
-                              <p className="text-sm text-[var(--ivory)]/55">{item.description}</p>
+                              <p className="text-sm text-ivory/55">{item.description}</p>
                             )}
                           </div>
-                          <p className="shrink-0 text-[var(--brass)]">
+                          <p className="shrink-0 text-brass">
                             {formatMoney(item.priceMinor ?? null) ?? ""}
                           </p>
                         </li>
@@ -376,7 +376,7 @@ export function BusinessPageView({
 
       {business.template === "bar" && happyHourNote && (
         <section className="mx-auto max-w-7xl px-4 pb-8 md:px-8">
-          <p className="border border-[var(--accent)]/30 bg-[var(--accent)]/10 px-6 py-4 text-sm text-[var(--ivory)]/80">
+          <p className="border border-accent/30 bg-accent/10 px-6 py-4 text-sm text-ivory/80">
             {happyHourNote}
           </p>
         </section>
@@ -389,11 +389,11 @@ export function BusinessPageView({
             {business.team.map((m) => (
               <article
                 key={m.name}
-                className="border border-[var(--brass)]/35 bg-black/50 p-8 transition hover:border-[var(--brass)]/55"
+                className="border border-brass/35 bg-black/50 p-8 transition hover:border-brass/55"
               >
-                <p className="text-xl text-[var(--ivory)]">{m.name}</p>
-                {m.role && <p className="text-xs uppercase tracking-widest text-[var(--brass)]">{m.role}</p>}
-                {m.bio && <p className="mt-3 text-sm text-[var(--ivory)]/65">{m.bio}</p>}
+                <p className="text-xl text-ivory">{m.name}</p>
+                {m.role && <p className="text-xs uppercase tracking-widest text-brass">{m.role}</p>}
+                {m.bio && <p className="mt-3 text-sm text-ivory/65">{m.bio}</p>}
               </article>
             ))}
           </div>
@@ -401,17 +401,17 @@ export function BusinessPageView({
       )}
 
       {business.testimonials && business.testimonials.length > 0 && (
-        <section id="reviews" className={`border-t border-[var(--brass)]/15 bg-black/45 ${SITE_SECTION_Y}`}>
+        <section id="reviews" className={`border-t border-brass/15 bg-black/45 ${SITE_SECTION_Y}`}>
           <div className={SITE_CONTAINER}>
             <SectionHeading label="Voices" title="Reviews" />
             <div className="mt-4 grid gap-6 md:grid-cols-2">
               {business.testimonials.map((t) => (
                 <blockquote
                   key={t.customerName + t.quote.slice(0, 20)}
-                  className="border border-[var(--brass)]/30 bg-black/55 p-8"
+                  className="border border-brass/30 bg-black/55 p-8"
                 >
-                  <p className="text-[var(--ivory)]/80">&ldquo;{t.quote}&rdquo;</p>
-                  <footer className="mt-4 text-sm text-[var(--brass)]">— {t.customerName}</footer>
+                  <p className="text-ivory/80">&ldquo;{t.quote}&rdquo;</p>
+                  <footer className="mt-4 text-sm text-brass">— {t.customerName}</footer>
                 </blockquote>
               ))}
             </div>
@@ -437,21 +437,21 @@ export function BusinessPageView({
               </Button>
             )}
             {onProperty && (
-              <p className="mt-6 text-sm text-[var(--ivory)]/60">
+              <p className="mt-6 text-sm text-ivory/60">
                 {BRAND.destination} · {settings.address}
               </p>
             )}
             <div className="mt-4 space-y-2 text-sm">
-              <a href={`mailto:${email}`} className="block break-all text-[var(--brass)]">{email}</a>
-              <a href={phoneHref(phone)} className="block break-all text-[var(--brass)]">{phone}</a>
+              <a href={`mailto:${email}`} className="block break-all text-brass">{email}</a>
+              <a href={phoneHref(phone)} className="block break-all text-brass">{phone}</a>
               {onProperty && (
-                <a href={mapsDirectionsUrl(settings.address)} className="block text-[var(--ivory)]/70 underline">
+                <a href={mapsDirectionsUrl(settings.address)} className="block text-ivory/70 underline">
                   Directions
                 </a>
               )}
             </div>
           </div>
-          <div className="min-w-0 border border-[var(--brass)]/35 bg-black/50 p-4 backdrop-blur-sm sm:p-6 md:p-10">
+          <div className="min-w-0 border border-brass/35 bg-black/50 p-4 backdrop-blur-sm sm:p-6 md:p-10">
           <InquiryForm
             type={inquiryType}
             businessSlug={business.slug}
@@ -480,9 +480,9 @@ export function BusinessPageView({
 
       {isOldNorthEnd && <OldNorthEndContactSection />}
 
-      <section className="border-t border-[var(--brass)]/15 py-10 md:py-16">
+      <section className="border-t border-brass/15 py-10 md:py-16">
         <div className={SITE_CONTAINER}>
-          <p className="font-sans text-[11px] uppercase tracking-[0.38em] text-[var(--brass)]">
+          <p className="font-sans text-[11px] uppercase tracking-[0.38em] text-brass">
             More at Inked & Infused
           </p>
           <ul className="mt-6 flex flex-wrap gap-4">
@@ -492,7 +492,7 @@ export function BusinessPageView({
                 <li key={b.slug}>
                   <Link
                     href={`/${b.slug}`}
-                    className="group inline-flex max-w-full items-start gap-2 break-words font-serif text-base text-[var(--ivory)]/70 transition hover:text-[var(--ivory)] sm:text-lg"
+                    className="group inline-flex max-w-full items-start gap-2 break-words font-serif text-base text-ivory/70 transition hover:text-ivory sm:text-lg"
                   >
                     {b.name}
                     <ArrowUpRight className="h-4 w-4 opacity-0 transition group-hover:opacity-100" />

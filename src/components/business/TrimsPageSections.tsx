@@ -20,7 +20,7 @@ const PLANNED_MENU = [
 
 export function TrimsPageSections() {
   return (
-    <section className={`border-y border-[var(--brass)]/15 bg-black/45 ${SITE_SECTION_Y}`}>
+    <section className={`border-y border-brass/15 bg-black/45 ${SITE_SECTION_Y}`}>
       <div className={SITE_CONTAINER}>
         <Reveal>
           <SectionHeading
@@ -28,7 +28,7 @@ export function TrimsPageSections() {
             title="Opening soon"
             description="Under construction and hiring. No fixed opening date, active appointment promises, or individual barber profiles for this launch."
           />
-          <p className="mt-4 font-sans text-sm text-[var(--ivory)]/70">
+          <p className="mt-4 font-sans text-sm text-ivory/70">
             Planned hours: Tuesday–Saturday 10:30 AM – 7:00 PM. Booking buttons can be swapped for a future third-party
             link — no custom booking engine.
           </p>
@@ -39,12 +39,12 @@ export function TrimsPageSections() {
           <SectionHeading label="Planned menu" title="Services & pricing" />
           <ul className="mt-6 grid gap-2 sm:grid-cols-2">
             {PLANNED_MENU.map((item) => (
-              <li key={item} className="border border-white/[0.08] px-4 py-3 text-sm text-[var(--ivory)]/80">
+              <li key={item} className="border border-white/[0.08] px-4 py-3 text-sm text-ivory/80">
                 {item}
               </li>
             ))}
           </ul>
-          <p className="mt-6 text-sm text-[var(--ivory)]/50">
+          <p className="mt-6 text-sm text-ivory/50">
             Confirm kids&apos; age cutoff and treatment availability before bookings go live. No coloring, dye, or salon
             services.
           </p>

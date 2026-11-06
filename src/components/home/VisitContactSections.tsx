@@ -18,22 +18,22 @@ export function VisitSection({ address }: { address: string }) {
             title="Visit Inked & Infused"
             description="Campus restaurant, bar, beer garden and patios at 2125 N Weber St. Tattoo and TRIMS entrance at 2123 N Weber St."
           />
-          <div className="mt-6 space-y-2 font-sans text-sm text-[var(--ivory)]/75">
+          <div className="mt-6 space-y-2 font-sans text-sm text-ivory/75">
             <p className="text-pretty">{campus.address}</p>
             <p className="break-words">
-              <a href={phoneHref(campus.phone)} className="text-[var(--brass)]">
+              <a href={phoneHref(campus.phone)} className="text-brass">
                 {campus.phoneDisplay}
               </a>
               <span className="mx-1 hidden sm:inline">·</span>
-              <a href={`mailto:${campus.email}`} className="block break-all text-[var(--brass)] sm:inline">
+              <a href={`mailto:${campus.email}`} className="block break-all text-brass sm:inline">
                 {campus.email}
               </a>
             </p>
-            <p className="text-[var(--ivory)]/50">
+            <p className="text-ivory/50">
               Instagram{" "}
               <a
                 href={campus.instagram}
-                className="text-[var(--brass)] underline"
+                className="text-brass underline"
                 rel="noopener noreferrer"
                 target="_blank"
               >
@@ -43,7 +43,7 @@ export function VisitSection({ address }: { address: string }) {
           </div>
           <a
             href={mapsDirectionsUrl(address)}
-            className="mt-10 inline-flex items-center gap-2 rounded-full border border-[var(--brass)]/50 px-7 py-3.5 font-sans text-[11px] font-medium uppercase tracking-[0.2em] text-[var(--brass)] transition hover:bg-[var(--brass)]/10 hover:border-[var(--brass)]"
+            className="mt-10 inline-flex items-center gap-2 rounded-full border border-brass/50 px-7 py-3.5 font-sans text-[11px] font-medium uppercase tracking-[0.2em] text-brass transition hover:bg-brass/10 hover:border-brass"
           >
             <MapPin className="h-4 w-4" />
             Open in Google Maps
@@ -51,7 +51,7 @@ export function VisitSection({ address }: { address: string }) {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className="relative aspect-[4/3] overflow-hidden border border-[var(--brass)]/30 bg-black/50">
+          <div className="relative aspect-[4/3] overflow-hidden border border-brass/30 bg-black/50">
             <div
               className="absolute inset-0 opacity-50"
               style={{
@@ -62,10 +62,10 @@ export function VisitSection({ address }: { address: string }) {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
             <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-8">
-              <p className="font-sans text-[10px] uppercase tracking-[0.28em] text-[var(--brass)] sm:tracking-[0.35em]">
+              <p className="font-sans text-[10px] uppercase tracking-[0.28em] text-brass sm:tracking-[0.35em]">
                 Campus address
               </p>
-              <p className="mt-2 text-pretty font-serif text-xl text-[var(--ivory)] sm:text-2xl">{address}</p>
+              <p className="mt-2 text-pretty font-serif text-xl text-ivory sm:text-2xl">{address}</p>
             </div>
           </div>
         </Reveal>
@@ -98,25 +98,25 @@ export function ContactSection({
             title="General inquiry"
             description="Questions about the campus or which business fits your plans? We route messages to the right team."
           />
-          <p className="mt-8 font-sans text-sm text-[var(--ivory)]/45">
+          <p className="mt-8 font-sans text-sm text-ivory/45">
             Project / web:{" "}
-            <a href={`mailto:${email}`} className="break-all text-[var(--brass)] hover:underline">{email}</a>
+            <a href={`mailto:${email}`} className="break-all text-brass hover:underline">{email}</a>
             <br />
             Campus call/text:{" "}
-            <a href={phoneHref(phone)} className="text-[var(--brass)] hover:underline">
+            <a href={phoneHref(phone)} className="text-brass hover:underline">
               {OWNER_CONTACTS.campus.phoneDisplay}
             </a>
             <span className="mx-1 hidden sm:inline">·</span>
             <span className="mt-1 block sm:mt-0 sm:inline">
               Owner:{" "}
-              <a href={phoneHref(OWNER_CONTACTS.ownerPhone)} className="text-[var(--brass)] hover:underline">
+              <a href={phoneHref(OWNER_CONTACTS.ownerPhone)} className="text-brass hover:underline">
                 {OWNER_CONTACTS.ownerPhoneDisplay}
               </a>
             </span>
           </p>
           <Link
             href="/#businesses"
-            className="mt-8 inline-flex items-center gap-2 font-sans text-[11px] uppercase tracking-[0.22em] text-[var(--ivory)]/50 transition hover:text-[var(--ivory)]"
+            className="mt-8 inline-flex items-center gap-2 font-sans text-[11px] uppercase tracking-[0.22em] text-ivory/50 transition hover:text-ivory"
           >
             Or jump to a specific business
             <ArrowUpRight className="h-3.5 w-3.5" />
@@ -124,7 +124,7 @@ export function ContactSection({
         </Reveal>
 
         <Reveal delay={0.08}>
-          <div className="min-w-0 border border-[var(--brass)]/35 bg-black/50 p-4 backdrop-blur-sm sm:p-6 md:p-10">
+          <div className="min-w-0 border border-brass/35 bg-black/50 p-4 backdrop-blur-sm sm:p-6 md:p-10">
             <InquiryForm
               type="general"
               fields={[{ name: "message", label: "How can we help?", type: "long", required: true }]}
