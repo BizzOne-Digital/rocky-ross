@@ -9,7 +9,6 @@ export const HOMEPAGE_MOCKUP = {
   findFunBg: `${BASE}/ss-03-find-fun-bg.jpg`,
   lowerSmokeBg: `${BASE}/ss-03-find-fun-bg.jpg`,
   gardenPhoto: `${BASE}/ss-14-garden.jpg`,
-  merchPhoto: `${BASE}/ss-15-merch.jpg`,
   lowerTexture: `${BASE}/ss-17-lower-texture.png`,
   sectionBg: `${BASE}/ss-16-section-bg.jpg`,
   campusPhoto: `${BASE}/ss-18-campus.jpg`,

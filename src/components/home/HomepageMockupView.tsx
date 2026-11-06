@@ -104,7 +104,7 @@ function HomepageLowerSmokeBackdrop() {
   );
 }
 
-/** Full supplied artwork — no aggressive crop (garden, merch, campus banner). */
+/** Full supplied artwork — no aggressive crop (garden, campus banner). */
 function MockupArtworkBand({
   src,
   alt,
@@ -221,7 +221,7 @@ export function HomepageMockupView({ brandName }: { brandName: string }) {
               >
                 <Link href="/#businesses" className="transition hover:text-hub-teal">Our Businesses</Link>
                 <Link href="/tequila-chilladas-bar" className="transition hover:text-hub-teal">Trail Garden</Link>
-                <span className="text-ivory/45">Merch</span>
+                <Link href="/ross-squad-djs-event-rentals" className="transition hover:text-hub-teal">DJ &amp; Events</Link>
                 <Link href="/#hours" className="transition hover:text-hub-teal">Hours &amp; Location</Link>
               </nav>
 
@@ -290,6 +290,7 @@ export function HomepageMockupView({ brandName }: { brandName: string }) {
           >
             <Link href="/#businesses">Our Businesses</Link>
             <Link href="/tequila-chilladas-bar">Trail Garden</Link>
+            <Link href="/ross-squad-djs-event-rentals">DJ &amp; Events</Link>
             <Link href="/#hours">Hours &amp; Location</Link>
           </nav>
         </div>
@@ -395,29 +396,6 @@ export function HomepageMockupView({ brandName }: { brandName: string }) {
               Explore the garden <span aria-hidden="true">+</span>
             </MockupGoldButton>
           </div>
-        </section>
-
-        <section className="relative z-10 border-b border-brass/30 bg-black py-6 md:py-8">
-          <div className={`${SITE_CONTAINER} text-center`}>
-            <p className="font-serif text-[clamp(1.35rem,4.5vw,2.25rem)] font-medium text-brass">
-              Take the fun with you.
-            </p>
-            <p className="mt-2 font-serif text-lg italic text-ivory/85">Shirts, tanks, hoodies &amp; patch hats.</p>
-            <p className="mt-4 font-sans text-sm text-ivory/85">
-              For all merchandise, sizes &amp; availability
-            </p>
-            <p className="mt-1 font-sans text-sm text-hub-teal">Ask about gift certificates, too.</p>
-            <p className="mt-3 font-serif text-sm italic text-ivory/70">
-              Text or call for availability — no online checkout on this site.
-            </p>
-            <a
-              href={smsHref(OWNER_CONTACTS.ownerPhone)}
-              className="mt-6 inline-flex max-w-full border border-brass bg-black/50 px-5 py-3 font-sans text-xs font-semibold uppercase tracking-[0.18em] text-ivory sm:text-sm"
-            >
-              Text Rocky: {OWNER_CONTACTS.ownerPhoneDisplay}
-            </a>
-          </div>
-          <MockupArtworkBand src={HOMEPAGE_MOCKUP.merchPhoto} alt="Merchandise shirts and hats artwork" className="!py-4" />
         </section>
 
         <MockupArtworkBand
